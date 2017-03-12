@@ -1,0 +1,71 @@
+{% extends 'GBFinance/base.html' %}
+
+{% load humanize %}
+
+{% block content %}
+<style>
+#wrapper {
+  margin-left: 5px;
+}
+#content {
+  float: left;
+  width: 33%;
+  background-color: #fff;
+  text-align: right;
+  margin-right: 5px;
+}
+#accountnames {
+  float: left;
+  width: 200px;
+  margin-left: -250px;
+  background-color: #fff;
+}
+#cleared {
+  clear: both;
+}
+</style>
+<h1>Balance Sheet</h1>
+
+<div id="wrapper">
+    <div id="accountnames">
+        <table width="100%" style="border: 2px solid black;">
+            <tr style="border: 1px solid black;"><th>Date</th></tr>
+            <tr><th>Fifth Third Checking</th></tr>
+            <tr><th>Huntington Checking</th></tr>
+            <tr><th>Total Checking</th></tr>
+            <tr><th>Huntington Savings</th></tr>
+            <tr><th>Fifth Third Savings</th></tr>
+            <tr><th>Capital One Savings</th></tr>
+            <tr><th>American Express Savings</th></tr>
+            <tr><th>Total Savings</th></tr>
+            <tr><th>Deacon Schwab Investment</th></tr>
+            <tr><th>Buckeye Schwab Investment</th></tr>
+            <tr><th>Total Investments</th></tr>
+            <tr><th>OPERS Pension</th></tr>
+            
+        </table>
+    </div>
+    {% for field in month_balance %}
+    <div id="content">
+        <table width="100%" style="border: 2px solid black;">
+
+            <tr style="text-align: center; border: 1px solid black;"><td>
+            <b>{{ field.date }}</b>
+            </td></tr>
+            <tr><td>{{ field.fifththird_check | intcomma }}</td></tr>
+            <tr><td>{{ field.huntington_check | intcomma }}</td></tr>
+            <tr><td>{{ field.month_totals.0 | intcomma }}</td></tr>
+            <tr><td>{{ field.huntington_save | intcomma }}</td></tr>
+            <tr><td>{{ field.fifththird_save | intcomma }}</td></tr>
+            <tr><td>{{ field.capone_save | intcomma }}</td></tr>
+            <tr><td>{{ field.amex_save | intcomma }}</td></tr>
+            <tr><td>{{ field.month_totals.1 | intcomma }}</td></tr>
+            <tr><td>{{ field.deacon_invest | intcomma }}</td></tr>
+            <tr><td>{{ field.buckeye_invest | intcomma }}</td></tr>
+            <tr><td>{{ field.month_totals.2 | intcomma }}</td></tr>
+            <tr><td>{{ field.opers_retire | intcomma }}</td></tr>
+        
+        </table>
+    </div>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends 'GBGolf/base.html' %}
+
+{% block content %}
+    <h1>Shots Over Par</h1>
+    <form method="POST" class="shots-form">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+{% endblock %}

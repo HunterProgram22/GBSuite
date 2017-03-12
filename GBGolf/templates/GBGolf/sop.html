@@ -1,0 +1,41 @@
+{% extends 'GBGolf/base.html' %}
+
+{% block content %}
+
+<h1>Shots Over Par Data</h1>
+<table width="100%" style="border: 3px solid black;">
+<tr style="border: 1px solid black;">
+    <th>Date</th>
+    <th>Drive Dist.</th>
+    <th>Drive Acc.</th>
+    <th>Par 3 Tee</th>
+    <th>Long Dist.</th>
+    <th>Long Acc.</th>
+    <th>Short Dist.</th>
+    <th>Short Acc.</th>
+    <th>Pitch</th>
+    <th>Chip</th>
+    <th>Putts</th>
+    <th>Penalty</th>
+    <th>Course Mgmt.</th>
+</tr>
+{% for shots in sop_stats %}
+<tr>
+        <td>{{ shots.date }}</td>
+        <td>{{ shots.drdist }}</td>
+        <td>{{ shots.dracc }}</td>
+        <td>{{ shots.par3tee }}</td>
+        <td>{{ shots.lngdist }}</td>
+        <td>{{ shots.lngacc }}</td>
+        <td>{{ shots.shtdist }}</td>
+        <td>{{ shots.shtacc }}</td>
+        <td>{{ shots.pitch }}</td>
+        <td>{{ shots.chip }}</td>
+        <td>{{ shots.putt }}</td>
+        <td>{{ shots.penal }}</td>
+        <td>{{ shots.coursemgmt }}</td>  
+</tr>
+{% endfor %}
+</table>
+
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'GBGolf/base.html' %}
+
+{% block content %}
+
+<h1>Manage Stats</h1>
+    <div class="menu-select">
+        <a href="{% url 'GBGolfround_new' %}" class="top-menu">        
+        <span><b> Add Round</b></span></a>
+    </div>
+    <div class="menu-select">
+        <a href="{% url 'GBGolfcourse_new' %}" class="top-menu">        
+        <span><b> Add Course</b></span></a>
+    </div>
+    <div class="menu-select">
+        <a href="{% url 'GBGolfshots_new' %}" class="top-menu">        
+        <span><b> Add Shots Over Par</b></span></a>
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'GBGolf/base.html' %}
+
+
+{% block content %}
+
+<h1>Round Handicap Data</h1>
+<table style="border: 3px solid black;">
+<tr style="border: 1px solid black;">
+    <th>Round</th>
+    <th> </th>
+    <th>Handicap <br> Differential</th>
+    <th> </th>
+    <th>Handicap</th>
+</tr>
+
+{% for handicap in round_handicap %}
+<tr>
+    <td>{{ handicap.0 }}</td>
+    <td>&nbsp; &nbsp; &nbsp;</td>
+    <td>{{ handicap.1 | floatformat:1 }}</td>
+    <td>&nbsp; &nbsp; &nbsp;</td>
+    <td>{{ handicap.2 | floatformat:1 }}</td>
+   
+{% endfor %}
+
+</tr>
+
+</table>
+
+{% endblock %}
