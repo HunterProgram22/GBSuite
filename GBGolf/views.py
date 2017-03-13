@@ -28,11 +28,11 @@ def round_new(request):
             round = form.save()
             # Add user save at later point here
             round.save()
-            return redirect('/manage/')
+            return redirect('GBGolfmanage')
     else:
         form = RoundForm()
         return render(request, 'GBGolf/round_edit.html', {'form': form} )
-    
+
 def delete_round(request):
     if request.method == 'POST':
         id = int(request.path.replace("/delete_round/", ""))
@@ -42,7 +42,7 @@ def delete_round(request):
     else:
         return HttpResponse("Did not post")
 
-    
+
 def course_new(request):
     if request.method == "POST":
         form = CourseForm(request.POST)
@@ -54,7 +54,7 @@ def course_new(request):
     else:
         form = CourseForm()
         return render(request, 'GBGolf/course_edit.html', {'form': form})
-    
+
 def shots_new(request):
     if request.method == "POST":
         form = ShotsForm(request.POST)
@@ -76,14 +76,14 @@ def handicap(request):
     round_stats = Round.objects.all().order_by('date')
     round_handicap = []
     diffList = []
-    handicapTotal = 0 
+    handicapTotal = 0
     round_count = 0
     for round in round_stats:
         round_count += 1
         diffList.append(round.handicap_diff())
         handicapTotal = calcHandicap((round_count), diffList)
         round_handicap.append((round, round.handicap_diff(), handicapTotal))
-    return render(request, 'GBGolf/handicap.html', 
+    return render(request, 'GBGolf/handicap.html',
                   {'round_handicap': round_handicap})
 
 

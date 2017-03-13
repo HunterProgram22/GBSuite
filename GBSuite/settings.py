@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '&4&gy(+!ywq^#fejn@#7xkc-x=dho1-d78f&8104#^3ln8!cj='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['192.168.2.6', '127.0.0.1']
+ALLOWED_HOSTS = ['192.168.2.6', '127.0.0.1', 'justinkudela.pythonanywhere.com']
 
 
 # Application definition
@@ -79,8 +79,12 @@ WSGI_APPLICATION = 'GBSuite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'JustinKudela$GBSuite',
+        'USER': 'JustinKudela',
+        'PASSWORD': 'wakeforest22',
+        'HOST': 'JustinKudela.mysql.pythonanywhere-services.com',   # Or an IP Address that your DB is hosted on
+        'PORT': '3306',
     }
 }
 

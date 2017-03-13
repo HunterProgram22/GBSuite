@@ -10,7 +10,7 @@ def manage(request):
 
 def balance(request):
     month_balance = MonthBal.objects.all().order_by('-date')
-    month_balance = month_balance[0:3]
+    month_balance = month_balance[0:2]
     return render(request, 'GBFinance/balancesheet.html', {'month_balance': month_balance})
 
 def balance_new(request):
@@ -19,7 +19,7 @@ def balance_new(request):
         if form.is_valid():
             month = form.save(commit=False)
             month.save()
-            return redirect('/')
+            return redirect('GBFinancemanage')
     else:
         form = MonthBalForm()
     return render(request, 'GBFinance/balance_edit.html', {'form': form})
