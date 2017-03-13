@@ -33,5 +33,18 @@ class MonthBal(models.Model):
             totalsave = self.fifththird_save + self.huntington_save \
                 + self.capone_save + self.amex_save
             totalinvest = self.buckeye_invest + self.deacon_invest
-            return (totalcheck, totalsave, totalinvest) 
+            totalretire = self.opers_retire + self.four01_retire \
+                + self.four57_retire + self.roth_retire
+            totalphysical = self.justin_car+self.kat_car+self.main_home
+            totalassets = totalcheck+totalsave+totalinvest+totalretire\
+                +totalphysical
+            totalcredit = self.amex_credit+self.discover_credit+self.capone_credit
+            totalloan = self.car_loan+self.privstudent_loan+self.pubstudent_loan
+            totalmortgage = self.main_mortgage
+            totalliabilities = totalcredit+totalloan+totalmortgage
+            networth = totalassets-totalliabilities
+            return (totalcheck, totalsave, totalinvest, \
+                    totalretire, totalphysical, totalassets, \
+                    totalcredit, totalloan, totalmortgage, totalliabilities, \
+                    networth) 
 

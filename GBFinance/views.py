@@ -10,6 +10,7 @@ def manage(request):
 
 def balance(request):
     month_balance = MonthBal.objects.all().order_by('-date')
+    month_balance = month_balance[0:3]
     return render(request, 'GBFinance/balancesheet.html', {'month_balance': month_balance})
 
 def balance_new(request):

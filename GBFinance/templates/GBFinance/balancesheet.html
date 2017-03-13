@@ -4,24 +4,33 @@
 
 {% block content %}
 <style>
+.blank_row {
+    height: 10px;
+}
+
 #wrapper {
-  margin-left: 5px;
+
 }
 #content {
   float: left;
-  width: 33%;
+  width: 100px;
   background-color: #fff;
   text-align: right;
-  margin-right: 5px;
+  margin-right: 15px;
 }
 #accountnames {
   float: left;
   width: 200px;
   margin-left: -250px;
+  margin-right: -10px;
   background-color: #fff;
 }
 #cleared {
   clear: both;
+}
+
+#dollar {
+    float: left;
 }
 </style>
 <h1>Balance Sheet</h1>
@@ -33,15 +42,48 @@
             <tr><th>Fifth Third Checking</th></tr>
             <tr><th>Huntington Checking</th></tr>
             <tr><th>Total Checking</th></tr>
+            <tr class="blank_row"><td></td></tr>
             <tr><th>Huntington Savings</th></tr>
             <tr><th>Fifth Third Savings</th></tr>
             <tr><th>Capital One Savings</th></tr>
             <tr><th>American Express Savings</th></tr>
             <tr><th>Total Savings</th></tr>
+            <tr class="blank_row"><td></td></tr>
             <tr><th>Deacon Schwab Investment</th></tr>
             <tr><th>Buckeye Schwab Investment</th></tr>
             <tr><th>Total Investments</th></tr>
+            <tr class="blank_row"><td></td></tr>
             <tr><th>OPERS Pension</th></tr>
+            <tr><th>Vanguard 401(k)</th></tr>
+            <tr><th>Vanguard Roth IRA</th></tr>
+            <tr><th>Ohio 457(b)</th></tr>
+            <tr><th>Total Retirement</th></tr>
+            <tr class="blank_row"><td></td></tr>
+            <tr><th>Justin's Car</th></tr>
+            <tr><th>Kat's Car</th></tr>
+            <tr><th>Home</th></tr>
+            <tr><th>Total Physical Assets</th></tr>
+            <tr class="blank_row"><td></td></tr>
+            <tr><th>TOTAL ASSETS</th></tr>
+            <tr class="blank_row"><td></td></tr>
+            <tr><th>American Express CC</th></tr>
+            <tr><th>Discover CC</th></tr>
+            <tr><th>Capital One CC</th></tr>
+            <tr><th>Total Credit Cards</th></tr>
+            <tr class="blank_row"><td></td></tr>
+            <tr><th>Car Loan</th></tr>
+            <tr><th>Private Student Loan</th></tr>
+            <tr><th>Government Student Loan</th></tr>
+            <tr><th>Total Loans</th></tr>
+            <tr class="blank_row"><td></td></tr>
+            <tr><th>Home Mortgage</th></tr>
+            <tr class="blank_row"><td></td></tr>
+            <tr><th>TOTAL LIABILITIES</th></tr>
+            <tr class="blank_row"><td></td></tr>
+            <tr><th>NET WORTH</th></tr>
+            
+            
+            
             
         </table>
     </div>
@@ -53,17 +95,47 @@
             <b>{{ field.date }}</b>
             </td></tr>
             <tr><td>{{ field.fifththird_check | intcomma }}</td></tr>
-            <tr><td>{{ field.huntington_check | intcomma }}</td></tr>
-            <tr><td>{{ field.month_totals.0 | intcomma }}</td></tr>
+            <tr><td><u>{{ field.huntington_check | intcomma }}</u></td></tr>
+            <tr><td><b><span id="dollar">$</span>{{ field.month_totals.0 | intcomma }}</b></td></tr>
+            <tr class="blank_row"><td></td></tr>
             <tr><td>{{ field.huntington_save | intcomma }}</td></tr>
             <tr><td>{{ field.fifththird_save | intcomma }}</td></tr>
             <tr><td>{{ field.capone_save | intcomma }}</td></tr>
-            <tr><td>{{ field.amex_save | intcomma }}</td></tr>
-            <tr><td>{{ field.month_totals.1 | intcomma }}</td></tr>
+            <tr><td><u>{{ field.amex_save | intcomma }}</u></td></tr>
+            <tr><td><b><span id="dollar">$</span>{{ field.month_totals.1 | intcomma }}</b></td></tr>
+            <tr class="blank_row"><td></td></tr>
             <tr><td>{{ field.deacon_invest | intcomma }}</td></tr>
-            <tr><td>{{ field.buckeye_invest | intcomma }}</td></tr>
-            <tr><td>{{ field.month_totals.2 | intcomma }}</td></tr>
+            <tr><td><u>{{ field.buckeye_invest | intcomma }}</u></td></tr>
+            <tr><td><b><span id="dollar">$</span>{{ field.month_totals.2 | intcomma }}</b></td></tr>
+            <tr class="blank_row"><td></td></tr>
             <tr><td>{{ field.opers_retire | intcomma }}</td></tr>
+            <tr><td>{{ field.four01_retire | intcomma }}</td></tr>
+            <tr><td>{{ field.roth_retire | intcomma }}</td></tr>
+            <tr><td><u>{{ field.four57_retire | intcomma }}</u></td></tr>
+            <tr><td><b><span id="dollar">$</span>{{ field.month_totals.3 | intcomma }}</b></td></tr>
+            <tr class="blank_row"><td></td></tr>
+            <tr><td>{{ field.justin_car | intcomma }}</td></tr>
+            <tr><td>{{ field.kat_car| intcomma }}</td></tr>
+            <tr><td><u>{{ field.main_home | intcomma }}</u></td></tr>
+            <tr><td><b><span id="dollar">$</span>{{ field.month_totals.4 | intcomma }}</b></td></tr>
+            <tr class="blank_row"><td></td></tr>
+            <tr><td><b><span id="dollar">$</span>{{ field.month_totals.5 | intcomma }}</b></td></tr>
+            <tr class="blank_row"><td></td></tr>
+            <tr><td>{{ field.amex_credit | intcomma }}</td></tr>
+            <tr><td>{{ field.discover_credit | intcomma }}</td></tr>
+            <tr><td><u>{{ field.capone_credit | intcomma }}</u></td></tr>
+            <tr><td><b><span id="dollar">$</span>{{ field.month_totals.6 | intcomma }}</b></td></tr>
+            <tr class="blank_row"><td></td></tr>
+            <tr><td>{{ field.car_loan | intcomma }}</td></tr>
+            <tr><td>{{ field.privstudent_loan | intcomma }}</td></tr>
+            <tr><td><u>{{ field.pubstudent_loan| intcomma }}</u></td></tr>
+            <tr><td><b><span id="dollar">$</span>{{ field.month_totals.7 | intcomma }}</b></td></tr>
+            <tr class="blank_row"><td></td></tr>
+            <tr><td>{{ field.main_mortgage | intcomma }}</td></tr>
+            <tr class="blank_row"><td></td></tr>
+            <tr><td><b><span id="dollar">$</span>{{ field.month_totals.9 | intcomma }}</b></td></tr>
+            <tr class="blank_row"><td></td></tr>
+            <tr><td><b><span id="dollar">$</span>{{ field.month_totals.10 | intcomma }}</b></td></tr>
         
         </table>
     </div>
