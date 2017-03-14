@@ -1,39 +1,50 @@
 from django.shortcuts import render, redirect
+from django.views import View
 from .forms import MonthBalForm
 from .models import MonthBal
 
-def home(request):
-    return render(request, 'GBFinance/home.html', {})
 
-def manage(request):
-    return render(request, 'GBFinance/manage.html', {})
+class Home(View):
+    def get(self, request):
+        return render(request, 'GBFinance/home.html', {})
 
-def balance(request):
-    month_balance = MonthBal.objects.all().order_by('-date')
-    month_balance = month_balance[0:2]
-    return render(request, 'GBFinance/balancesheet.html', {'month_balance': month_balance})
+class Manage(View):
+    def get(self, request):
+        return render(request, 'GBFinance/manage.html', {})
 
-def balance_new(request):
-    if request.method == "POST":
+class Balance(View):
+    def get(self, request):
+        month_balance = MonthBal.objects.all().order_by('-date')
+        month_balance = month_balance[0:2]
+        return render(request, 'GBFinance/balancesheet.html', {'month_balance': month_balance})
+
+class Balance_new(View):
+    def post(self, request):
         form = MonthBalForm(request.POST)
         if form.is_valid():
             month = form.save(commit=False)
             month.save()
             return redirect('GBFinancemanage')
-    else:
+        return render(request, 'GBFinance/balance_edit.html', {'form': form})
+
+    def get(self, request):
         form = MonthBalForm()
-    return render(request, 'GBFinance/balance_edit.html', {'form': form})
+        return render(request, 'GBFinance/balance_edit.html', {'form': form})
 
-def income(request):
-    return render(request, 'GBFinance/incomestatement.html', {})
+class Income(View):
+    def get(self, request):
+        return render(request, 'GBFinance/incomestatement.html', {})
 
-def income_new(request):
-    #form = IncStateForm()
-    return render(request, 'GBFinance/income_edit.html', {})
+class Income_new(View):
+    def get(self, request):
+        #form = IncStateForm()
+        return render(request, 'GBFinance/income_edit.html', {})
 
-def cash(request):
-    return render(request, 'GBFinance/cashflow.html', {})
+class Cash(View):
+    def get(self, request):
+        return render(request, 'GBFinance/cashflow.html', {})
 
-def cash_new(request):
-    #form = CashflowForm()
-    return render(request, 'GBFinance/cash_edit.html', {})
+class Cash_new(View):
+    def get(self, request):
+        #form = CashflowForm()
+        return render(request, 'GBFinance/cash_edit.html', {})
