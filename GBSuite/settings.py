@@ -79,8 +79,12 @@ WSGI_APPLICATION = 'GBSuite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'JustinKudela$GBSuite',
+        'USER': 'JustinKudela',
+        'PASSWORD': 'wakeforest22',
+        'HOST': 'JustinKudela.mysql.pythonanywhere-services.com',   # Or an IP Address that your DB is hosted on
+        'PORT': '3306',
     }
 }
 

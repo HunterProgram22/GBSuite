@@ -28,21 +28,21 @@ def round_new(request):
             round = form.save()
             # Add user save at later point here
             round.save()
-            return redirect('/manage/')
+            return redirect('GBGolfmanage')
     else:
         form = RoundForm()
         return render(request, 'GBGolf/round_edit.html', {'form': form} )
-    
+
 def delete_round(request):
     if request.method == 'POST':
-        id = int(request.path.replace("/delete_round/", ""))
+        id = int(request.path.replace("/GBGolf/delete_round/", ""))
         round = Round.objects.get(pk=id)
         round.delete()
-        return redirect('/show/')
+        return redirect('GBGolfrounds')
     else:
         return HttpResponse("Did not post")
 
-    
+
 def course_new(request):
     if request.method == "POST":
         form = CourseForm(request.POST)
@@ -50,11 +50,11 @@ def course_new(request):
             course = form.save()
             # Add user save at later point here
             course.save()
-            return redirect('/')
+            return redirect('GBGolfmanage')
     else:
         form = CourseForm()
         return render(request, 'GBGolf/course_edit.html', {'form': form})
-    
+
 def shots_new(request):
     if request.method == "POST":
         form = ShotsForm(request.POST)
@@ -62,7 +62,7 @@ def shots_new(request):
             shots = form.save()
             # Add user save at later point here
             shots.save()
-            return redirect('/')
+            return redirect('GBGolfmanage')
     else:
         form = ShotsForm()
         return render(request, 'GBGolf/shots_edit.html', {'form': form})
@@ -76,14 +76,19 @@ def handicap(request):
     round_stats = Round.objects.all().order_by('date')
     round_handicap = []
     diffList = []
-    handicapTotal = 0 
+    handicapTotal = 0
     round_count = 0
     for round in round_stats:
         round_count += 1
         diffList.append(round.handicap_diff())
-        handicapTotal = calcHandicap((round_count), diffList)
+        #There is probably a more efficent way to do this instead of copying the list each time (yield? enumerate?)
+        diffUsed = diffList[:]
+        if round_count > 20:
+            diffUsed = diffUsed[(round_count-20):round_count]
+        handicapTotal = calcHandicap((round_count), diffUsed)
         round_handicap.append((round, round.handicap_diff(), handicapTotal))
-    return render(request, 'GBGolf/handicap.html', 
+    round_handicap.reverse()
+    return render(request, 'GBGolf/handicap.html',
                   {'round_handicap': round_handicap})
 
 
