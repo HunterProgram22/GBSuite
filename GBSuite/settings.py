@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'GBFinance',
     'GBFit',
     'GBGolf',
+    'log',
 ]
 
 MIDDLEWARE = [
@@ -55,10 +56,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'GBSuite.urls'
 
+LOGIN_REDIRECT_URL = '/' # It means home view
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ["templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -79,13 +82,19 @@ WSGI_APPLICATION = 'GBSuite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'JustinKudela$GBSuite',
-        'USER': 'JustinKudela',
-        'PASSWORD': 'wakeforest22',
-        'HOST': 'JustinKudela.mysql.pythonanywhere-services.com',   # Or an IP Address that your DB is hosted on
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'mydatabase',
     }
+    #Sqlite3 is for test and mysql (below) is for production
+    #Comment out db not in use    
+    #'default': {
+    #    'ENGINE': 'django.db.backends.mysql',
+    #    'NAME': 'JustinKudela$GBSuite',
+    #    'USER': 'JustinKudela',
+    #    'PASSWORD': 'wakeforest22',
+    #    'HOST': 'JustinKudela.mysql.pythonanywhere-services.com',   # Or an IP Address that your DB is hosted on
+    #    'PORT': '3306','
+    # }
 }
 
 
