@@ -1,4 +1,4 @@
-{% extends 'GBFinance/base.html' %}
+{% extends 'GBFinance/base2.html' %}
 
 {% load humanize %}
 
@@ -81,10 +81,10 @@
             <tr><th>TOTAL LIABILITIES</th></tr>
             <tr class="blank_row"><td></td></tr>
             <tr><th>NET WORTH</th></tr>
-            
-            
-            
-            
+
+
+
+
         </table>
     </div>
     {% for field in month_balance %}
@@ -136,7 +136,7 @@
             <tr><td><b><span id="dollar">$</span>{{ field.month_totals.9 | intcomma }}</b></td></tr>
             <tr class="blank_row"><td></td></tr>
             <tr><td><b><span id="dollar">$</span>{{ field.month_totals.10 | intcomma }}</b></td></tr>
-        
+
         </table>
     </div>
     {% endfor %}
