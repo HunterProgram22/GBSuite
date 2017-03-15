@@ -1,14 +1,16 @@
 from django.conf.urls import url
-from . import views
+from django.contrib.auth.decorators import login_required
+from .views import Manage, Round_new, Course_new, Shots_new, Rounds, \
+    Delete_round, Handicap, Sop, Home
 
 urlpatterns = [
-        url(r'^manage/$', views.manage, name='GBGolfmanage'),
-        url(r'^round/new/$', views.round_new, name='GBGolfround_new'),
-        url(r'^course/new/$', views.course_new, name='GBGolfcourse_new'),
-        url(r'^shots/new/$', views.shots_new, name='GBGolfshots_new'),
-        url(r'^rounds/$', views.rounds, name='GBGolfrounds'),
-        url(r'^delete_round/', views.delete_round, name='GBGolfdelete_round'),
-        url(r'^handicap/$', views.handicap, name='GBGolfhandicap'),
-        url(r'^sop/$', views.sop, name='GBGolfsop'),
-        url(r'^$', views.home, name='GBGolfhome'),
+        url(r'^manage/$', login_required(Manage.as_view()), name='GBGolfmanage'),
+        url(r'^round/new/$', login_required(Round_new.as_view()), name='GBGolfround_new'),
+        url(r'^course/new/$', login_required(Course_new.as_view()), name='GBGolfcourse_new'),
+        url(r'^shots/new/$', login_required(Shots_new.as_view()), name='GBGolfshots_new'),
+        url(r'^rounds/$', login_required(Rounds.as_view()), name='GBGolfrounds'),
+        url(r'^delete_round/', login_required(Delete_round.as_view()), name='GBGolfdelete_round'),
+        url(r'^handicap/$', login_required(Handicap.as_view()), name='GBGolfhandicap'),
+        url(r'^sop/$', login_required(Sop.as_view()), name='GBGolfsop'),
+        url(r'^$', login_required(Home.as_view()), name='GBGolfhome'),
     ]
