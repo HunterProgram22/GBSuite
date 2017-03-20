@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from .forms import MonthBalForm
-from .models import MonthBal
+from .forms import MonthBalForm, MonthIncForm
+from .models import MonthBal, MonthInc
 
 
 class Home(View):
@@ -36,9 +36,17 @@ class Income(View):
         return render(request, 'GBFinance/incomestatement.html', {})
 
 class Income_new(View):
+    def post(self, request):
+        form = MonthIncForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('GBFinancemanage')
+        return render(request, 'GBFinance/income_edit.html', {'form': form})
+    
+    
     def get(self, request):
-        #form = IncStateForm()
-        return render(request, 'GBFinance/income_edit.html', {})
+        form = MonthIncForm()
+        return render(request, 'GBFinance/income_edit.html', {'form': form})
 
 class Cash(View):
     def get(self, request):

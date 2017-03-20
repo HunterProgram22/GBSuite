@@ -3,8 +3,6 @@
 {% block content %}
 <head>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>  
 
     <h1>New Monthly Balance Sheet</h1>
@@ -12,10 +10,5 @@
         {{ form.as_p }}
         <button type="submit" class="save btn btn-default">Save</button>
     </form>
-    
-<script>
-  $( function() {
-    $( "#id_date" ).datepicker();
-  } );
-</script>    
+      
 {% endblock %}
