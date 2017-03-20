@@ -145,6 +145,10 @@ class MonthInc(models.Model):
     daycare = models.DecimalField(max_digits=8, decimal_places=2)
     taxdeductible_giving = models.DecimalField(max_digits=8, decimal_places=2)
     
-    
+    def total_investment(self):
+        totalinvestments = self.huntington_interest + self.fifththird_interest + \
+            self.capone_interest + self.amex_interest + self.schwab_interest + \
+            self.schwab_dividends
+        return totalinvestments
     
 

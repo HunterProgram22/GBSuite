@@ -1,5 +1,154 @@
 {% extends 'GBFinance/base.html' %}
 
 {% block content %}
+{% load humanize %}
+
+<style>
+.blank_row {
+    height: 10px;
+}
+
+#content {
+  float: left;
+  width: 100px;
+  background-color: #fff;
+  text-align: right;
+  margin-right: 15px;
+}
+#accountnames {
+  float: left;
+  width: 225px;
+  background-color: #fff;
+}
+#cleared {
+  clear: both;
+}
+
+#dollar {
+    float: left;
+}
+</style>
 <h1>Income Statement</h1>
+
+<div id="sheet-wrapper">
+    <div id="accountnames">
+        <table width="100%" style="border: 2px solid black;">
+            <tr style="border: 1px solid black;"><th>Date</th></tr>
+            <tr><th>Huntington Interest</th></tr>
+            <tr><th>Fifth Third Interest</th></tr>
+            <tr><th>Capital One Interest</th></tr>
+            <tr><th>American Express Interest</th></tr>
+            <tr><th>Schwab Interest</th></tr>
+            <tr><th>Schwab Dividends</th></tr>
+            <tr><th>Total Investment Income</th></tr>
+            <tr class="blank_row"><td></td></tr>
+            <tr><th>Expense Checks</th></tr>
+            <tr><th>Miscellaneous Income</th></tr>
+            <tr><th>Refunds/Rebates/Repayment</th></tr>
+            <tr><th>Gifts</th></tr>
+            <tr><th>Total Non-taxable Income</th></tr>
+            <tr class="blank_row"><td></td></tr>
+            <tr><th>Supreme Court Salary</th></tr>
+            <tr><th>CDM Smith Salary</th></tr>
+            <tr><th>Total Gross Job Income</th></tr>
+            <tr class="blank_row"><td></td></tr>
+            <tr><th>TOTAL INCOME</th></tr>
+            <tr class="blank_row"><td></td></tr>
+            <tr><th>OPERS Pension</th></tr>
+            <tr><th>Ohio 457(b)</th></tr>
+            <tr><th>CDM 401(k)</th></tr>
+            <tr><th>Total Pre-tax Savings</th></tr>
+            <tr class="blank_row"><td></td></tr>
+            <tr><th>Vanguard Roth IRA</th></tr>
+            <tr><th>Schwab Accounts</th></tr>
+            <tr><th>American Express Savings</th></tr>
+            <tr><th>Fifth Third Savings</th></tr>
+            <tr><th>Capital One Savings</th></tr>
+            <tr><th>529 College Savings</th></tr>
+            <tr><th>Huntington Savings</th></tr>
+            <tr><th>Total Post-tax Savings</th></tr>
+            <tr class="blank_row"><td></td></tr>
+            <tr><th>TOTAL SAVINGS</th></tr>
+            <tr class="blank_row"><td></td></tr>
+            <tr><th>Federal Tax</th></tr>
+            <tr><th>Social Security</th></tr>
+            <tr><th>Medicare</th></tr>
+            <tr><th>Ohio Tax</th></tr>
+            <tr><th>Columbus Tax</th></tr>
+            <tr><th>Total Taxes</th></tr>
+            <tr class="blank_row"><td></td></tr>
+            <tr><th>Health Insurance</th></tr>
+            <tr><th>Supplemental Life Insurance</th></tr>
+            <tr><th>Flex Spending Accounts</th></tr>
+            <tr><th>CDM STD</th></tr>
+            <tr><th>CDM Supplemental LTD</th></tr>
+            <tr><th>Parking</th></tr>
+            <tr><th>Parking Admin</th></tr>
+            <tr><th>Total Insurance</th></tr>
+            <tr class="blank_row"><td></td></tr>
+            <tr><th>TOTAL DEDUCTIONS</th></tr>
+            <tr class="blank_row"><td></td></tr>
+            <tr><th>Net Income</th></tr>
+            <tr class="blank_row"><td></td></tr>
+            <tr><th>Mortgage</th></tr>
+            <tr><th>HOA Fees</th></tr>
+            <tr><th>Total Home Costs</th></tr>
+            <tr class="blank_row"><td></td></tr>
+            <tr><th>Auto Insurance</th></tr>
+            <tr><th>AEP Electric</th></tr>
+            <tr><th>Rumpke Trash</th></tr>
+            <tr><th>Delaware Sewer</th></tr>
+            <tr><th>Delco Water</th></tr>
+            <tr><th>Suburban Gas</th></tr>
+            <tr><th>Verizon Phone</th></tr>
+            <tr><th>Sprint Phone</th></tr>
+            <tr><th>DirecTv Cable</th></tr>
+            <tr><th>TimeWarner Internet</th></tr>
+            <tr><th>Total Utilities</th></tr>
+            <tr class="blank_row"><td></td></tr>
+            <tr><th>Auto Loan</th></tr>
+            <tr><th>Government Student Loan</th></tr>
+            <tr><th>Private Student Loan</th></tr>
+            <tr><th>Total Loans</th></tr>
+            <tr class="blank_row"><td></td></tr>
+            <tr><th>Capital One CC</th></tr>
+            <tr><th>American Express CC</th></tr>
+            <tr><th>Discover CC</th></tr>
+            <tr><th>Kohls/Vic.Sec./Macy/E.Bauer CC</th></tr>
+            <tr><th>Kat Work CC</th></tr>
+            <tr><th>Total Credit Cards</th></tr>
+            <tr class="blank_row"><td></td></tr>
+            <tr><th>Cash/Check Purchases</th></tr>
+            <tr><th>Daycare</th></tr>
+            <tr><th>Tax Deductible Giving</th></tr>
+            <tr><th>Total Cash, Checks, Charity</th></tr>
+            <tr class="blank_row"><td></td></tr>
+            <tr><th>TOTAL EXPENDITURES</th></tr>
+            <tr class="blank_row"><td></td></tr>
+            <tr><th>MONTHLY SURPLUS/DEFICIT</th></tr>
+
+
+
+
+        </table>
+    </div>
+    {% for field in month_income %}
+    <div id="content">
+        <table width="100%" style="border: 2px solid black;">
+
+            <tr style="text-align: center; border: 1px solid black;"><td>
+            <b>{{ field.date }}</b>
+            </td></tr>
+            <tr><td>{{ field.huntington_interest | intcomma }}</td></tr>
+            <tr><td>{{ field.fifththird_interest | intcomma }}</td></tr>
+            <tr><td>{{ field.capone_interest | intcomma }}</td></tr>
+            <tr><td>{{ field.amex_interest | intcomma }}</td></tr>
+            <tr><td>{{ field.schwab_interest | intcomma }}</td></tr>
+            <tr><td><u>{{ field.schwab_dividends| intcomma }}</u></td></tr>
+            <tr><td><b><span id="dollar">$</span>{{ field.total_investment | intcomma }}</b></td></tr>
+            <tr class="blank_row"><td></td></tr>
+            
+        </table>
+    </div>
+    {% endfor %}
 {% endblock %}

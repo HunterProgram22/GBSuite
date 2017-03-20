@@ -33,7 +33,9 @@ class Balance_new(View):
 
 class Income(View):
     def get(self, request):
-        return render(request, 'GBFinance/incomestatement.html', {})
+        month_income = MonthInc.objects.all().order_by('-date')
+        month_income = month_income[0:2]
+        return render(request, 'GBFinance/incomestatement.html', {'month_income': month_income})
 
 class Income_new(View):
     def post(self, request):
