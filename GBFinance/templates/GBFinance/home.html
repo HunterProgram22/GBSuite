@@ -1,5 +1,30 @@
 {% extends 'GBFinance/base.html' %}
 
+{% load humanize %}
+
 {% block content %}
-<h1>Home Page</h1>
+<h1>The Kudela Partnership Financial Dashboard</h1>
+
+    <p>&nbsp;</p>
+
+    <p>The Kudela Partnership Net Worth as of {{ dash_balance.date }} is ${{ dash_balance.networth | intcomma }}.</p>
+
+    <h5><b></b>{{ dash_balance.date | date:"F" }} Balance Sheet Summary</b></h5>
+    <ul>
+        <li>Total Cash Available (checking and savings): ${{ dash_balance.current_cash | intcomma }}</li>
+        <li>Total Retirement Savings:  ${{ dash_balance.total_retire | intcomma }}</li>
+        <li>Total Non-Mortgage Debt (car and student loans): ${{ dash_balance.total_loan | intcomma }}</li>
+    </ul>
+
+    <p>For {{ dash_income.date | date:"F" }} there was a surplus/deficit of ${{ dash_income.total_surplus | intcomma }} after all taxes, savings and expenses.</p>
+
+    <h5><b></b>{{ dash_income.date | date:"F" }} Income Statement Summary</b></h5>
+    <ul>
+        <li>Total Loan Payments: ${{ dash_income.total_loans | intcomma}}</li>
+        <li>Total Personal Spending (credit cards): ${{ dash_income.total_creditcards | intcomma }}</li>
+    </ul>
+
+    <p>Please see the Balance Statement, Income Sheet and Cashflow Statement for additional details.</p>
+
+
 {% endblock %}

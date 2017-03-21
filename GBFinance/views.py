@@ -6,7 +6,10 @@ from .models import MonthBal, MonthInc
 
 class Home(View):
     def get(self, request):
-        return render(request, 'GBFinance/home.html', {})
+        dash_balance = MonthBal.objects.latest('date')
+        dash_income = MonthInc.objects.latest('date')
+        return render(request, 'GBFinance/home.html', {'dash_balance': dash_balance,
+        'dash_income': dash_income})
 
 class Manage(View):
     def get(self, request):
@@ -44,17 +47,14 @@ class Income_new(View):
             form.save()
             return redirect('GBFinancemanage')
         return render(request, 'GBFinance/income_edit.html', {'form': form})
-    
-    
+
+
     def get(self, request):
         form = MonthIncForm()
         return render(request, 'GBFinance/income_edit.html', {'form': form})
 
 class Cash(View):
     def get(self, request):
-        return render(request, 'GBFinance/cashflow.html', {})
-
-class Cash_new(View):
-    def get(self, request):
-        #form = CashflowForm()
-        return render(request, 'GBFinance/cash_edit.html', {})
+        month_cash = MonthInc.objects.all().order_by('-date')
+        month_cash = month_cash[0:2]
+        return render(request, 'GBFinance/cashflow.html', {'month_cash': month_cash})

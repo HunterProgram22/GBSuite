@@ -1,7 +1,7 @@
 from django.conf.urls import url
 from django.contrib.auth.decorators import login_required
 from .views import Home, Manage, Balance, Balance_new, Income, Income_new, \
-    Cash, Cash_new
+    Cash
 
 urlpatterns = [
         url(r'^manage/$', login_required(Manage.as_view()), name='GBFinancemanage'),
@@ -10,6 +10,5 @@ urlpatterns = [
         url(r'^income/$', login_required(Income.as_view()), name='GBFinanceincome'),
         url(r'^income/new/$', login_required(Income_new.as_view()), name='income_new'),
         url(r'^cash/$', login_required(Cash.as_view()), name='GBFinancecash'),
-        url(r'^cash/new/$', login_required(Cash_new.as_view()), name='cash_new'),
         url(r'^$', login_required(Home.as_view()), name='GBFinancehome'),
     ]

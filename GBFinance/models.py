@@ -37,6 +37,9 @@ class MonthBal(models.Model):
                 + self.capone_save + self.amex_save
             return totalsave
 
+        def current_cash(self):
+            return (self.total_check() + self.total_save())
+
         def total_invest(self):
             totalinvest = self.buckeye_invest + self.deacon_invest
             return totalinvest
@@ -227,3 +230,12 @@ class MonthInc(models.Model):
 
     def total_surplus(self):
         return self.net_income() - self.total_expenditures()
+
+    def available_job_income(self):
+        return (self.total_grossjob_income() - (self.total_deductions()+self.opers_retirement))
+
+    def cash_available(self):
+        return self.available_job_income() + self.total_nontaxable_income()
+
+    def cashflow(self):
+        return (self.cash_available() - self.total_expenditures())
