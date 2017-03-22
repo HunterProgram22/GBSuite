@@ -17,8 +17,23 @@ class Manage(View):
 
 class Balance(View):
     def get(self, request):
-        month_balance = MonthBal.objects.all().order_by('-date')
-        month_balance = month_balance[0:2]
+        month_balance = MonthBal.objects.order_by('-date')[:2]
+        return render(request, 'GBFinance/balancesheet.html', {'month_balance': month_balance})
+
+    def post(self, request):
+        if request.POST.get("month") != '' and request.POST.get("year") != '':
+            month = request.POST.get("month")
+            year = request.POST.get("year")
+            month_balance = MonthBal.objects.filter(date__month=month).filter(date__year=year)
+            month_balance = list(month_balance[:])
+            add_month = MonthBal.objects.all()[0:1]
+            month_balance.append(add_month)
+        elif request.POST.get("month") != '':
+            month = request.POST.get("month")
+            month_balance = MonthBal.objects.filter(date__month=month)
+        elif request.POST.get("year") != '':
+            year = request.POST.get("year")
+            month_balance = MonthBal.objects.filter(date__year=year)
         return render(request, 'GBFinance/balancesheet.html', {'month_balance': month_balance})
 
 class Balance_new(View):
@@ -36,8 +51,7 @@ class Balance_new(View):
 
 class Income(View):
     def get(self, request):
-        month_income = MonthInc.objects.all().order_by('-date')
-        month_income = month_income[0:2]
+        month_income = MonthInc.objects.order_by('-date')[:2]
         return render(request, 'GBFinance/incomestatement.html', {'month_income': month_income})
 
 class Income_new(View):
@@ -47,7 +61,6 @@ class Income_new(View):
             form.save()
             return redirect('GBFinancemanage')
         return render(request, 'GBFinance/income_edit.html', {'form': form})
-
 
     def get(self, request):
         form = MonthIncForm()
