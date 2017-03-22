@@ -21,11 +21,10 @@
 
       // Create the data table.
       var data = new google.visualization.DataTable();
-      data.addColumn('string', 'Topping');
-      data.addColumn('number', 'Slices');
+      data.addColumn('string', 'Category');
+      data.addColumn('number', 'Amount');
       data.addRows([
         ['Savings', {{ dash_income.total_allsavings }}],
-        ['Taxes and Insurance', {{ dash_income.total_deductions }}],
         ['Mortgage', {{ dash_income.total_homecosts }}],
         ['Utilities', {{ dash_income.total_utilities }}],
         ['Loans', {{ dash_income.total_loans }}],
@@ -34,7 +33,7 @@
       ]);
 
       // Set chart options
-      var options = {'title':'Monthly Income Allocation',
+      var options = {'title':'{{ dash_income.date | date:"F" }} After-tax Income Allocation',
                      'width':400,
                      'height':300};
 
@@ -54,7 +53,7 @@
 
     <p>&nbsp;</p>
 
-    <p>The Kudela Partnership Net Worth as of {{ dash_balance.date }} is ${{ dash_balance.networth | intcomma }}.</p>
+    <p>The Kudela Partnership Net Worth as of {{ dash_balance.date }} is <b>${{ dash_balance.networth | intcomma }}</b>.</p>
 
     <h5><b>{{ dash_balance.date | date:"F" }} Balance Sheet Summary</b></h5>
     <ul>

@@ -1,12 +1,28 @@
 {% extends 'base.html' %}
 
+
 {% block content %}
+<head>
+    <style>
+        #menu {
+            float: right;
+        }
+    </style>
+</head>
 
 <div class="container">
     <div class="row">
         <div class="jumbotron">
             <h1>Hello {{ user.first_name }}</h1>
             <p>Welcome to your Dashboard!</p>
+        </div>
+        <div class="menu">
+            <table>
+                <li><a href="/GBFinance/">GBFinance</a></li>
+                <li><a href="/GBGolf/">GBGolf</a></li>
+                <li><a href="/GBFit/">GBFit</a></li>
+                <li><a href="/GBFamily/">GBFamily</a></li>
+            </table>
         </div>
     </div>
 </div>
