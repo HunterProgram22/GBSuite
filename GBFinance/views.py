@@ -26,7 +26,7 @@ class Balance(View):
             year = request.POST.get("year")
             month_balance = MonthBal.objects.filter(date__month=month).filter(date__year=year)
             month_balance = list(month_balance[:])
-            add_month = MonthBal.objects.all()[0:1]
+            add_month = MonthBal.objects.order_by('-date')[0:1]
             month_balance.append(add_month[0])
         elif request.POST.get("month") != '':
             month = request.POST.get("month")
@@ -34,6 +34,8 @@ class Balance(View):
         elif request.POST.get("year") != '':
             year = request.POST.get("year")
             month_balance = MonthBal.objects.filter(date__year=year)
+        else:
+            month_balance = MonthBal.objects.order_by('-date')[:2]
         return render(request, 'GBFinance/balancesheet.html', {'month_balance': month_balance})
 
 class Balance_new(View):
@@ -53,14 +55,14 @@ class Income(View):
     def get(self, request):
         month_income = MonthInc.objects.order_by('-date')[:2]
         return render(request, 'GBFinance/incomestatement.html', {'month_income': month_income})
-    
+
     def post(self, request):
         if request.POST.get("month") != '' and request.POST.get("year") != '':
             month = request.POST.get("month")
             year = request.POST.get("year")
             month_income = MonthInc.objects.filter(date__month=month).filter(date__year=year)
             month_income = list(month_income[:])
-            add_month = MonthInc.objects.all()[0:1]
+            add_month = MonthInc.objects.order_by('-date')[0:1]
             month_income.append(add_month[0])
         elif request.POST.get("month") != '':
             month = request.POST.get("month")
@@ -68,6 +70,8 @@ class Income(View):
         elif request.POST.get("year") != '':
             year = request.POST.get("year")
             month_income = MonthInc.objects.filter(date__year=year)
+        else:
+            month_income = MonthInc.objects.order_by('-date')[:2]
         return render(request, 'GBFinance/incomestatement.html', {'month_income': month_income})
 
 class Income_new(View):
