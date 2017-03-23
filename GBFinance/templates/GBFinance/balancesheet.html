@@ -48,6 +48,7 @@ td, th {
 </style>
 <h1>Balance Sheet</h1>
 
+<div id="searchform">
 <form action="{% url 'GBFinancebalance' %}" method="POST">{% csrf_token %}
 <select name="month">
     <option value=''>--Select Month--</option>
@@ -76,10 +77,12 @@ td, th {
 <br>
 <input type="submit">
 </form>
+</div>
 
+<div>
 <button onclick="myFunction()">Show/Hide Detail</button>
+</div>
 
-<div id="sheet-wrapper">
     <div id="accountnames">
         <table width="100%" style="border: 2px solid black;">
             <tr style="border: 1px solid black;"><th>Date</th></tr>
@@ -133,7 +136,7 @@ td, th {
         <table width="100%" style="border: 2px solid black;">
 
             <tr style="text-align: center; border: 1px solid black;"><td>
-            <b>{{ field.date }}</b>
+            <b>{{ field.date | date:"M Y" }}</b>
             </td></tr>
             <tr class="detail"><td>{{ field.fifththird_check | intcomma }}</td></tr>
             <tr class="detail"><td><u>{{ field.huntington_check | intcomma }}</u></td></tr>
@@ -180,7 +183,7 @@ td, th {
 
         </table>
     </div>
-</div>
+
    <script>
     function myFunction() {
     var x = document.getElementsByClassName('detail');

@@ -35,7 +35,7 @@ td, th {
 </style>
 <h1>Cashflow Statement</h1>
 
-<div id="sheet-wrapper">
+
     <div id="accountnames">
         <table width="100%" style="border: 2px solid black;">
             <tr style="border: 1px solid black;"><th>Date</th></tr>
@@ -54,7 +54,7 @@ td, th {
         <table width="100%" style="border: 2px solid black; padding: 2px;">
 
             <tr style="text-align: center; border: 1px solid black;"><td>
-            <b>{{ field.date }}</b>
+            <b>{{ field.date | date:"M Y" }}</b>
             </td></tr>
             <tr><td>{{ field.available_job_income | intcomma }}</td></tr>
             <tr><td><u><span id="plus">+</span>{{ field.total_nontaxable_income | intcomma }}</u></td></tr>
