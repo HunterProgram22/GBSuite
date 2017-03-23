@@ -49,11 +49,6 @@ def yearAverages(rounds):
     avgGIR = avgGIR/roundsplayed
     return (year, roundsplayed, avgScore, avgPutts, avgFH, avgGIR)
 
-def strokesGraph(rounds):
-    scores = []
-    for round in rounds:
-        scores.append(round.strokes)
-    return scores
 
 
 

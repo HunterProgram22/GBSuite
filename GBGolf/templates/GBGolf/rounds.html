@@ -1,8 +1,20 @@
 {% extends 'GBGolf/base.html' %}
 
 {% block content %}
+<style>
+
+@media(min-width:768px) {
+#golfsheet {
+    width: 700px;
+}
+}
+
+</style>
+
 
 <h1>Rounds Played</h1>
+
+<div id="golfsheet">
 <table width="100%" style="border: 3px solid black;">
 <tr style="border: 1px solid black;">
     <th>Date</th>
@@ -12,7 +24,7 @@
     <th>Putts</th>
     <th>Fairways Hit</th>
     <th>GIR</th>
-    <th>&nbsp;</th>
+    <th></th>
 </tr>
 {% for round in round_stats %}
 <tr>
@@ -29,5 +41,5 @@
 </tr>
 {% endfor %}
 </table>
-
+</div>
 {% endblock %}

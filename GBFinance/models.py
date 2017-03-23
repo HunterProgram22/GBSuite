@@ -10,10 +10,10 @@ class MonthBal(models.Model):
         amex_save = models.DecimalField(max_digits=8, decimal_places=2)
         buckeye_invest = models.DecimalField(max_digits=8, decimal_places=2)
         deacon_invest = models.DecimalField(max_digits=8, decimal_places=2)
-        four57_retire = models.DecimalField(max_digits=8, decimal_places=2)
-        four01_retire= models.DecimalField(max_digits=8, decimal_places=2)
-        roth_retire = models.DecimalField(max_digits=8, decimal_places=2)
-        opers_retire = models.DecimalField(max_digits=8, decimal_places=2)
+        four57_retirebal = models.DecimalField(max_digits=8, decimal_places=2)
+        four01_retirebal= models.DecimalField(max_digits=8, decimal_places=2)
+        roth_retirebal = models.DecimalField(max_digits=8, decimal_places=2)
+        opers_retirebal = models.DecimalField(max_digits=8, decimal_places=2)
         justin_car= models.DecimalField(max_digits=8, decimal_places=2)
         kat_car = models.DecimalField(max_digits=8, decimal_places=2)
         main_home= models.DecimalField(max_digits=8, decimal_places=2)
@@ -45,8 +45,8 @@ class MonthBal(models.Model):
             return totalinvest
 
         def total_retire(self):
-            totalretire = self.opers_retire + self.four01_retire \
-                + self.four57_retire + self.roth_retire
+            totalretire = self.opers_retirebal + self.four01_retirebal \
+                + self.four57_retirebal + self.roth_retirebal
             return totalretire
 
         def total_physical(self):
@@ -58,8 +58,8 @@ class MonthBal(models.Model):
                 self.fifththird_save + self.huntington_save \
                 + self.capone_save + self.amex_save + \
                 self.buckeye_invest + self.deacon_invest + \
-                self.opers_retire + self.four01_retire \
-                + self.four57_retire + self.roth_retire + \
+                self.opers_retirebal + self.four01_retirebal \
+                + self.four57_retirebal + self.roth_retirebal + \
                 self.justin_car+self.kat_car+self.main_home
             return totalassets
 
@@ -148,6 +148,9 @@ class MonthInc(models.Model):
     daycare = models.DecimalField(max_digits=8, decimal_places=2)
     taxdeductible_giving = models.DecimalField(max_digits=8, decimal_places=2)
 
+    def __str__(self):
+            return str(self.date)
+    
     def total_investment(self):
         totalinvestments = self.huntington_interest + self.fifththird_interest + \
             self.capone_interest + self.amex_interest + self.schwab_interest + \

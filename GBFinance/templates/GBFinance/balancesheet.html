@@ -4,9 +4,16 @@
 
 {% block content %}
 <style>
-button {
+button, input {
     padding: 2px;
-    margin: 2px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+form {
+    padding: 2px;
+    border: 2px gray solid;
+    width: 315px;
 }
 
 td, th {
@@ -44,7 +51,7 @@ td, th {
 <form action="{% url 'GBFinancebalance' %}" method="POST">{% csrf_token %}
 <select name="month">
     <option value=''>--Select Month--</option>
-    <option value='1'>Janaury</option>
+    <option value='1'>January</option>
     <option value='2'>February</option>
     <option value='3'>March</option>
     <option value='4'>April</option>
@@ -66,7 +73,7 @@ td, th {
     <option value='2013'>2013</option>
     <option value='2012'>2012</option>
 </select>
-<br><br>
+<br>
 <input type="submit">
 </form>
 
@@ -119,9 +126,6 @@ td, th {
             <tr class="blank_row"><td></td></tr>
             <tr><th>NET WORTH</th></tr>
 
-
-
-
         </table>
     </div>
     {% for field in month_balance %}
@@ -145,10 +149,10 @@ td, th {
             <tr class="detail"><td><u>{{ field.buckeye_invest | intcomma }}</u></td></tr>
             <tr><td><b><span id="dollar">$</span>{{ field.total_invest | intcomma }}</b></td></tr>
             <tr class="blank_row"><td></td></tr>
-            <tr class="detail"><td>{{ field.opers_retire | intcomma }}</td></tr>
-            <tr class="detail"><td>{{ field.four01_retire | intcomma }}</td></tr>
-            <tr class="detail"><td>{{ field.roth_retire | intcomma }}</td></tr>
-            <tr class="detail"><td><u>{{ field.four57_retire | intcomma }}</u></td></tr>
+            <tr class="detail"><td>{{ field.opers_retirebal | intcomma }}</td></tr>
+            <tr class="detail"><td>{{ field.four01_retirebal | intcomma }}</td></tr>
+            <tr class="detail"><td>{{ field.roth_retirebal | intcomma }}</td></tr>
+            <tr class="detail"><td><u>{{ field.four57_retirebal | intcomma }}</u></td></tr>
             <tr><td><b><span id="dollar">$</span>{{ field.total_retire | intcomma }}</b></td></tr>
             <tr class="blank_row"><td></td></tr>
             <tr class="detail"><td>{{ field.justin_car | intcomma }}</td></tr>
@@ -176,6 +180,7 @@ td, th {
 
         </table>
     </div>
+</div>
    <script>
     function myFunction() {
     var x = document.getElementsByClassName('detail');

@@ -13,6 +13,7 @@ class Round(models.Model):
     course = models.ForeignKey(Course, to_field="course")
     #setting date to unique, not sure if will raise issue with multiple rounds
     #on the same date, maybe only if two rounds on same course and same date
+    holesplayed = models.IntegerField(default=18)
     date = models.DateField(unique=True)
     strokes = models.IntegerField()
     putts = models.IntegerField()
