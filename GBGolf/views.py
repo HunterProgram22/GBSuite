@@ -26,7 +26,7 @@ class Home(View):
         for year9 in years_played9:
             year_rounds9 = Round.objects.filter(date__year=year9).filter(holesplayed=9)
             year_stats9.append(yearAverages(year_rounds9))
-        return render(request, 'GBGolf/home.html', {'year_stats': year_stats, 
+        return render(request, 'GBGolf/home.html', {'year_stats': year_stats,
                                                     'year_stats9': year_stats9})
 
 
@@ -69,7 +69,7 @@ class Course_new(View):
     def get(self, request):
         form = CourseForm()
         return render(request, 'GBGolf/course_edit.html', {'form': form})
-    
+
 
 class Shots_new(View):
     def post(self, request):
@@ -84,7 +84,7 @@ class Shots_new(View):
     def get(self, request):
         form = ShotsForm()
         return render(request, 'GBGolf/shots_edit.html', {'form': form})
-    
+
 
 class Rounds(View):
     def get(self, request):
@@ -112,20 +112,19 @@ class Handicap(View):
                 diffUsed = diffUsed[(round_count-20):round_count]
             handicapTotal = calcHandicap((round_count), diffUsed)
             round_handicap.append((round, round.handicap_diff(), handicapTotal))
-        for round in round_stats9:
+        for round9 in round_stats9:
             round_count9 += 1
-            diffList9.append(round.handicap_diff())
+            diffList9.append(round9.handicap_diff())
             #There is probably a more efficient way to do this instead of copying the list each time (yield? enumerate?)
-            diffUsed = diffList9[:]
+            diffUsed9 = diffList9[:]
             if round_count9 > 20:
-                diffUsed = diffUsed[(round_count-20):round_count]
-            handicapTotal9 = calcHandicap((round_count), diffUsed)
-            round_handicap9.append((round, round.handicap_diff(), handicapTotal9))
+                diffUsed9 = diffUsed9[(round_count9-20):round_count]
+            handicapTotal9 = calcHandicap((round_count9), diffUsed9)
+            round_handicap9.append((round9, round9.handicap_diff(), handicapTotal9))
         round_handicap.reverse()
         round_handicap9.reverse()
         return render(request, 'GBGolf/handicap.html',
-                      {'round_handicap': round_handicap, 
-                       'round_handicap9': round_handicap9})
+                      {'round_handicap': round_handicap, 'round_handicap9': round_handicap9})
 
 
 class Sop(View):
