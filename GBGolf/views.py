@@ -53,8 +53,12 @@ class Delete_round(View):
     def post(self, request):
         id = int(request.path.replace("/GBGolf/delete_round/", ""))
         round = Round.objects.get(pk=id)
-        round.delete()
-        return redirect('GBGolfrounds')
+        if round.holesplayed == 18:
+            round.delete()
+            return redirect('GBGolfrounds')
+        elif round.holesplayed == 9:
+            round.delete()
+            return redirect('GBGolfrounds9')
 
 class Course_new(View):
     def post(self, request):
@@ -88,8 +92,13 @@ class Shots_new(View):
 
 class Rounds(View):
     def get(self, request):
-        round_stats = Round.objects.all().order_by('-date')
+        round_stats = Round.objects.filter(holesplayed=18).order_by('-date')
         return render(request, 'GBGolf/rounds.html', {'round_stats': round_stats})
+
+class Rounds9(View):
+    def get(self, request):
+        round_stats9 = Round.objects.filter(holesplayed=9).order_by('-date')
+        return render(request, 'GBGolf/rounds9.html', {'round_stats9': round_stats9})
 
 class Handicap(View):
     def get(self, request):

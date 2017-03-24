@@ -15,8 +15,7 @@
 
 </style>
 
-
-<h2>18-Hole Rounds Played</h2>
+<h2>9-Hole Rounds Played</h2>
 
 <div id="golfsheet">
 <table width="100%" style="border: 3px solid black;">
@@ -30,21 +29,20 @@
     <th>GIR</th>
     <th></th>
 </tr>
-{% for round in round_stats %}
+{% for round9 in round_stats9 %}
 <tr>
-    <form method="POST" action="{% url 'GBGolfdelete_round' %}{{ round.id }}">{% csrf_token %}
-        <td>{{ round.date }}</td>
-        <td> {{ round.course }}</td>
+    <form method="POST" action="{% url 'GBGolfdelete_round' %}{{ round9.id }}">{% csrf_token %}
+        <td>{{ round9.date }}</td>
+        <td> {{ round9.course }}</td>
         <td>&nbsp;&nbsp;&nbsp;</td>
-        <td class='centdata'>{{round.strokes}}</td>
-        <td class='centdata'>{{round.putts}}</td>
-        <td class='centdata'>{{round.fairways_hit}}</td>
-        <td class='centdata'>{{round.gir}}</td>
+        <td class='centdata'>{{round9.strokes}}</td>
+        <td class='centdata'>{{round9.putts}}</td>
+        <td class='centdata'>{{round9.fairways_hit}}</td>
+        <td class='centdata'>{{round9.gir}}</td>
         <td><button type="submit">Delete Round</button><td>
     </form>
 </tr>
 {% endfor %}
 </table>
 </div>
-
 {% endblock %}

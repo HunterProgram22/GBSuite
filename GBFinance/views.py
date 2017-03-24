@@ -15,6 +15,20 @@ class Manage(View):
     def get(self, request):
         return render(request, 'GBFinance/manage.html', {})
 
+class Analysis(View):
+    def get(self, request):
+        return render(request, 'GBFinance/analysis.html', {})
+
+    def post(self, request):
+        send_data = []
+        year = request.POST.get("year")
+        monthly_data = MonthInc.objects.filter(date__year=year)
+        for month in monthly_data:
+            field = request.POST.get("category")
+            amount = getattr(month, field)
+            send_data.append(amount)
+        return render(request, 'GBFinance/analysis.html', {'send_data': send_data})
+
 class Balance(View):
     def get(self, request):
         month_balance = MonthBal.objects.order_by('-date')[:2]

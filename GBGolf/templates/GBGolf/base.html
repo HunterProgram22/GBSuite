@@ -109,7 +109,16 @@
                         <a href="{% url 'GBGolfmanage' %}"><i class="fa fa-fw fa-edit"></i> Manage</a>
                     </li>
                     <li>
-                        <a href="{% url 'GBGolfrounds' %}"><i class="fa fa-fw fa-bar-chart"></i> Rounds</a>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#round"><i class="fa fa-fw fa-bar-chart"></i> Rounds <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="round" class="collapse">
+                            <li>
+                                <a href="{% url 'GBGolfrounds' %}">18-Hole Rounds</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'GBGolfrounds9' %}">9-Hole Rounds</a>
+                            </li>
+                        </ul>
+
                     </li>
                     <li>
                         <a href="{% url 'GBGolfhandicap' %}"><i class="fa fa-fw fa-line-chart"></i> Handicap</a>
@@ -118,8 +127,8 @@
                         <a href="{% url 'GBGolfsop' %}"><i class="fa fa-fw fa-money"></i> Shots Over Par</a>
                     </li>
                     <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-list"></i> GBSuite <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="demo" class="collapse">
+                        <a href="javascript:;" data-toggle="collapse" data-target="#suite"><i class="fa fa-fw fa-list"></i> GBSuite <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="suite" class="collapse">
                             <li>
                                 <a href="{% url 'GBFinancehome' %}">GBFinance</a>
                             </li>
