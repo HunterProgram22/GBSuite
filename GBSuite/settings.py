@@ -81,20 +81,20 @@ WSGI_APPLICATION = 'GBSuite.wsgi.application'
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'db.sqlite3',
-    }
+    #'default': {
+    #    'ENGINE': 'django.db.backends.sqlite3',
+    #    'NAME': 'db.sqlite3',
+    #}
     #Sqlite3 is for test and mysql (below) is for production
     #Comment out db not in use
-    #'default': {
-    #   'ENGINE': 'django.db.backends.mysql',
-    #    'NAME': 'JustinKudela$GBSuite',
-    #    'USER': 'JustinKudela',
-    #    'PASSWORD': 'wakeforest22',
-    #    'HOST': 'JustinKudela.mysql.pythonanywhere-services.com',   # Or an IP Address that your DB is hosted on
-    #    'PORT': '3306',
-    #}
+    'default': {
+       'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'JustinKudela$GBSuite',
+        'USER': 'JustinKudela',
+        'PASSWORD': 'wakeforest22',
+        'HOST': 'JustinKudela.mysql.pythonanywhere-services.com',   # Or an IP Address that your DB is hosted on
+        'PORT': '3306',
+    }
 }
 
 

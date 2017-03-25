@@ -11,7 +11,7 @@
 
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
-          
+
             ['Month', '{{ category }}',],
             {% for field in send_data %}
             ['{{ field.0 | date:'M' }}',  {{ field.1 }},],
@@ -21,7 +21,7 @@
 
         var options = {
           title: 'Monthly Income Allocation',
-          curveType: 'function',
+          curveType: '',
           legend: { position: 'bottom' }
         };
 
