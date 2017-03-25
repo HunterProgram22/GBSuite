@@ -23,11 +23,12 @@ class Analysis(View):
         send_data = []
         year = request.POST.get("year")
         monthly_data = MonthInc.objects.filter(date__year=year)
-        for month in monthly_data:
-            field = request.POST.get("category")
-            amount = getattr(month, field)
-            send_data.append(amount)
-        return render(request, 'GBFinance/analysis.html', {'send_data': send_data})
+        category = request.POST.get("category")
+        for item in monthly_data:
+            month = item.date
+            amount = getattr(item, category)
+            send_data.append((month, amount))
+        return render(request, 'GBFinance/analysis.html', {'send_data': send_data, 'category': category})
 
 class Balance(View):
     def get(self, request):
