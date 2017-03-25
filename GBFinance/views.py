@@ -17,12 +17,16 @@ class Manage(View):
 
 class Analysis(View):
     def get(self, request):
-        return render(request, 'GBFinance/analysis.html', {})
+        send_data=[(0,0)]
+        return render(request, 'GBFinance/analysis.html', {'send_data': send_data})
 
     def post(self, request):
         send_data = []
         year = request.POST.get("year")
-        monthly_data = MonthInc.objects.filter(date__year=year)
+        if year == "ALL":
+            monthly_data = MonthInc.objects.all()
+        else:
+            monthly_data = MonthInc.objects.filter(date__year=year)
         category = request.POST.get("category")
         for item in monthly_data:
             month = item.date
