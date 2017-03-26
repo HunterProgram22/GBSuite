@@ -9,8 +9,13 @@
 }
 }
 
-.centdata {
+th, tr {
     text-align: center;
+}
+
+.leftround {
+    text-align: left;
+    padding-left: 2px;
 }
 
 </style>
@@ -33,13 +38,13 @@
 {% for round in round_stats %}
 <tr>
     <form method="POST" action="{% url 'GBGolfdelete_round' %}{{ round.id }}">{% csrf_token %}
-        <td>{{ round.date }}</td>
-        <td> {{ round.course }}</td>
+        <td class='leftround'>{{ round.date }}</td>
+        <td class='leftround'> {{ round.course }}</td>
         <td>&nbsp;&nbsp;&nbsp;</td>
-        <td class='centdata'>{{round.strokes}}</td>
-        <td class='centdata'>{{round.putts}}</td>
-        <td class='centdata'>{{round.fairways_hit}}</td>
-        <td class='centdata'>{{round.gir}}</td>
+        <td>{{round.strokes}}</td>
+        <td>{{round.putts}}</td>
+        <td>{{round.fairways_hit}}</td>
+        <td>{{round.gir}}</td>
         <td><button type="submit">Delete Round</button><td>
     </form>
 </tr>

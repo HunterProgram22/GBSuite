@@ -10,7 +10,6 @@ class Home(View):
         year_stats = []
         years_played = []
         rounds = Round.objects.filter(holesplayed=18)
-        print(rounds)
         for round in rounds:
             if round.get_year() not in years_played:
                 years_played.append(round.get_year())

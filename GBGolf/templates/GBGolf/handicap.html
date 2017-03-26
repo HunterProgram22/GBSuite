@@ -2,6 +2,17 @@
 
 
 {% block content %}
+<style>
+
+th, td {
+    text-align: center;
+}
+
+.leftround {
+    text-align: left;
+}
+
+</style>
 
 <h1>Round Handicap Data</h1>
 
@@ -17,7 +28,7 @@
 
 {% for handicap in round_handicap %}
 <tr>
-    <td>{{ handicap.0 }}</td>
+    <td class='leftround'>{{ handicap.0 }}</td>
     <td>&nbsp; &nbsp; &nbsp;</td>
     <td>{{ handicap.1 | floatformat:1 }}</td>
     <td>&nbsp; &nbsp; &nbsp;</td>
@@ -41,7 +52,7 @@
 
 {% for handicap in round_handicap9 %}
 <tr>
-    <td>{{ handicap.0 }}</td>
+    <td class='leftround'>{{ handicap.0 }}</td>
     <td>&nbsp; &nbsp; &nbsp;</td>
     <td>{{ handicap.1 | floatformat:1 }}</td>
     <td>&nbsp; &nbsp; &nbsp;</td>
