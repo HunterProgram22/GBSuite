@@ -1,0 +1,125 @@
+{% extends 'GBFinance/base.html' %}
+
+{% load humanize %}
+
+{% block content %}
+
+<style>
+
+table {
+    border: 2px black solid;
+    width: 100%;
+}
+
+td, th {
+    text-align: right;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+.heading {
+    text-align: left;
+    width: auto;
+}
+
+.toprow {
+    border: 1px solid black;
+}
+
+@media(min-width:768px) {
+#reportsheet {
+    width: 700px;
+}
+}
+</style>
+
+<h1>Quarterly Reports</h1>
+<div id="searchform">
+<form action="{% url 'GBFinancereports' %}" method="POST">{% csrf_token %}
+<select name="quarter">
+    <option value=''>--Select Quarter--</option>
+    <option value='1/2017'>1st Quarter 2017</option>
+    <option value='4/2016'>4th Quarter 2016</option>
+    <option value='3/2016'>3rd Quarter 2016</option>
+    <option value='2/2016'>2nd Quarter 2016</option>
+    <option value='1/2016'>1st Quarter 2016</option>
+    <option value='4/2015'>4th Quarter 2015</option>
+    <option value='3/2015'>3rd Quarter 2015</option>
+    <option value='2/2015'>2nd Quarter 2015</option>
+    <option value='1/2015'>1st Quarter 2015</option>
+    <option value='4/2014'>4th Quarter 2014</option>
+    <option value='3/2014'>3rd Quarter 2014</option>
+    <option value='2/2014'>2nd Quarter 2014</option>
+    <option value='1/2014'>1st Quarter 2014</option>
+    <option value='4/2013'>4th Quarter 2013</option>
+    <option value='3/2013'>3rd Quarter 2013</option>
+    <option value='2/2013'>2nd Quarter 2013</option>
+    <option value='1/2013'>1st Quarter 2013</option>
+</select>
+<br>
+<input type="submit">
+</form>
+</div>
+
+
+<h2>The Kudela Partnership {{ quarter_report }} Report</h2>
+
+<div id="reportsheet">
+<p>A summary of the financial data for {{ quarter_report }} is as follows:</p>
+
+<p>The Net Worth of the Kudela Partnership at the close of the quarter was: 
+   X BALANCESHEET. This is an increase of X% VARIABLE over last quarter</p>
+    
+<p>For {{ quarter_report }} the partnership allocated X INCOMESTATEMENT of funds
+available. 
+    
+<p>A comparison of spending and saving this quarter as compared to last quarter
+and this same quarter a year ago is presented below.</p>
+
+<table>
+<tr class='toprow'>    
+    <th class='heading'>Category</th>    
+    <th>{{ quarter_report }}</th>  
+    <th>Last Quarter</th>    
+    <th>{{ yearago_report }}</th>    
+</tr>
+<tr>    
+    <td class='heading'>Personal Spending</td>
+    <td>$&nbsp;{{ currentquarter_report.0 | intcomma }}</td>        
+    <td>$&nbsp;{{ lastquarter_report.0 | intcomma }}</td>        
+    <td>$&nbsp;{{ yearagoquarter_report.0 | intcomma }}</td>
+</tr>
+<tr>    
+    <td class='heading'>Utilities</td>
+    <td>$&nbsp;{{ currentquarter_report.1 | intcomma }}</td>        
+    <td>$&nbsp;{{ lastquarter_report.1 | intcomma }}</td>        
+    <td>$&nbsp;{{ yearagoquarter_report.1 | intcomma }}</td>
+</tr>
+<tr>    
+    <td class='heading'>Loan Payments</td>
+    <td>$&nbsp;{{ currentquarter_report.2 | intcomma }}</td>        
+    <td>$&nbsp;{{ lastquarter_report.2 | intcomma }}</td>        
+    <td>$&nbsp;{{ yearagoquarter_report.2 | intcomma }}</td>
+</tr>
+<tr>    
+    <td class='heading'>Total Savings</td>
+    <td>$&nbsp;{{ currentquarter_report.3 | intcomma }}</td>        
+    <td>$&nbsp;{{ lastquarter_report.3 | intcomma }}</td>        
+    <td>$&nbsp;{{ yearagoquarter_report.3 | intcomma }}</td>
+</tr>
+
+</table><br>
+
+<p>A comparison of certain account balances as compared to last quarter 
+and this same quarter a year ago is presented below.</p>
+
+<table>
+<tr class='toprow'>
+    <th class='heading'>Category</th>    
+    <th>{{ quarter_report }}</th>  
+    <th>Last Quarter</th>    
+    <th>{{ yearago_report }}</th>   
+</tr>
+</table>
+</div>
+{% endblock %}

@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.views import View
 from .forms import MonthBalForm, MonthIncForm
 from .models import MonthBal, MonthInc
+from .functions import report
 
 
 class Home(View):
@@ -14,7 +15,36 @@ class Home(View):
 class Manage(View):
     def get(self, request):
         return render(request, 'GBFinance/manage.html', {})
-
+    
+class Reports(View):
+    def get(self, request):
+        return render(request, 'GBFinance/reports.html', {})
+    
+    def post(self, request):
+        quarter = request.POST.get("quarter")[0]
+        year = request.POST.get("quarter")[2:]
+        quarter_report = quarter + "Q " + year
+        yearago_report = quarter + "Q " + str(int(year)-1)
+        currentquarter_report = report(quarter, year)
+        if quarter == "1":
+            lastquarter = "4"
+            lastquarteryear = str(int(year)-1)
+        else:
+            lastquarter = str(int(quarter)-1)
+            lastquarteryear = year 
+        lastquarter_report = report(lastquarter, lastquarteryear)
+        year = str(int(year)-1)
+        yearagoquarter_report = report(quarter, year)
+        ''' _reports are returned as a tuple in the format (total_creditcards,
+        total_utilities, total_loans, total_savings)'''
+        return render(request, 'GBFinance/reports.html', 
+                      {'quarter_report': quarter_report,
+                       'yearago_report': yearago_report, 
+                       'currentquarter_report': currentquarter_report, 
+                       'lastquarter_report': lastquarter_report,
+                       'yearagoquarter_report': yearagoquarter_report})
+     
+    
 class Analysis(View):
     def get(self, request):
         send_data=[(0,0)]
