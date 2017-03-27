@@ -15,11 +15,11 @@ class Home(View):
 class Manage(View):
     def get(self, request):
         return render(request, 'GBFinance/manage.html', {})
-    
+
 class Reports(View):
     def get(self, request):
         return render(request, 'GBFinance/reports.html', {})
-    
+
     def post(self, request):
         quarter = request.POST.get("quarter")[0]
         year = request.POST.get("quarter")[2:]
@@ -31,20 +31,22 @@ class Reports(View):
             lastquarteryear = str(int(year)-1)
         else:
             lastquarter = str(int(quarter)-1)
-            lastquarteryear = year 
+            lastquarteryear = year
         lastquarter_report = report(lastquarter, lastquarteryear)
+        lastquarter_report_name = lastquarter + "Q " + lastquarteryear
         year = str(int(year)-1)
         yearagoquarter_report = report(quarter, year)
         ''' _reports are returned as a tuple in the format (total_creditcards,
         total_utilities, total_loans, total_savings)'''
-        return render(request, 'GBFinance/reports.html', 
+        return render(request, 'GBFinance/reports.html',
                       {'quarter_report': quarter_report,
-                       'yearago_report': yearago_report, 
-                       'currentquarter_report': currentquarter_report, 
+                       'lastquarter_report_name': lastquarter_report_name,
+                       'yearago_report': yearago_report,
+                       'currentquarter_report': currentquarter_report,
                        'lastquarter_report': lastquarter_report,
                        'yearagoquarter_report': yearagoquarter_report})
-     
-    
+
+
 class Analysis(View):
     def get(self, request):
         send_data=[(0,0)]

@@ -3,7 +3,7 @@
 {% load humanize %}
 
 {% block content %}
-
+<head>
 <style>
 
 table {
@@ -22,7 +22,7 @@ td, th {
     width: auto;
 }
 
-.toprow {
+.toprow, .bottomrow {
     border: 1px solid black;
 }
 
@@ -32,7 +32,34 @@ td, th {
 }
 }
 </style>
+ <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
 
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Quarter', 'Spending', 'Utilities', 'Savings'],
+          ['{{ quarter_report }}', {{ currentquarter_report.0 }}, {{ currentquarter_report.1 }}, {{ currentquarter_report.3 }}],
+          ['{{ lastquarter_report_name}}', {{ lastquarter_report.0 }}, {{ lastquarter_report.1 }}, {{ lastquarter_report.3 }}],
+          ['{{ yearago_report }}', {{ yearagoquarter_report.0 }}, {{ yearagoquarter_report.1 }}, {{ yearagoquarter_report.3 }}],
+        ]);
+
+        var options = {
+          chart: {
+            title: 'Quarterly Comparison',
+            subtitle: 'Report for {{ quarter_report }}',
+          }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+        chart.draw(data, options);
+      }
+    </script>
+</head>
+
+<body>
 <h1>Quarterly Reports</h1>
 <div id="searchform">
 <form action="{% url 'GBFinancereports' %}" method="POST">{% csrf_token %}
@@ -67,59 +94,85 @@ td, th {
 <div id="reportsheet">
 <p>A summary of the financial data for {{ quarter_report }} is as follows:</p>
 
-<p>The Net Worth of the Kudela Partnership at the close of the quarter was: 
-   X BALANCESHEET. This is an increase of X% VARIABLE over last quarter</p>
-    
-<p>For {{ quarter_report }} the partnership allocated X INCOMESTATEMENT of funds
-available. 
-    
-<p>A comparison of spending and saving this quarter as compared to last quarter
-and this same quarter a year ago is presented below.</p>
+<p>The Net Worth of the Kudela Partnership at the close of the quarter was:
+   <b>${{ currentquarter_report.5 | intcomma}}</b>.</p>
+
+<p>A comparison of spending and saving for {{ quarter_report }} as compared to {{ lastquarter_report_name }}
+and {{ yearago_report }} is presented below. Please note that the numbers
+are not inclusive of all categories from the monthly income statements. For specific
+details please refer to the income statements page.</p>
 
 <table>
-<tr class='toprow'>    
-    <th class='heading'>Category</th>    
-    <th>{{ quarter_report }}</th>  
-    <th>Last Quarter</th>    
-    <th>{{ yearago_report }}</th>    
+<tr class='toprow'>
+    <th class='heading'>Category</th>
+    <th>{{ quarter_report }}</th>
+    <th>{{ lastquarter_report_name }}</th>
+    <th>{{ yearago_report }}</th>
 </tr>
-<tr>    
+<tr>
     <td class='heading'>Personal Spending</td>
-    <td>$&nbsp;{{ currentquarter_report.0 | intcomma }}</td>        
-    <td>$&nbsp;{{ lastquarter_report.0 | intcomma }}</td>        
+    <td>$&nbsp;{{ currentquarter_report.0 | intcomma }}</td>
+    <td>$&nbsp;{{ lastquarter_report.0 | intcomma }}</td>
     <td>$&nbsp;{{ yearagoquarter_report.0 | intcomma }}</td>
 </tr>
-<tr>    
+<tr>
     <td class='heading'>Utilities</td>
-    <td>$&nbsp;{{ currentquarter_report.1 | intcomma }}</td>        
-    <td>$&nbsp;{{ lastquarter_report.1 | intcomma }}</td>        
+    <td>$&nbsp;{{ currentquarter_report.1 | intcomma }}</td>
+    <td>$&nbsp;{{ lastquarter_report.1 | intcomma }}</td>
     <td>$&nbsp;{{ yearagoquarter_report.1 | intcomma }}</td>
 </tr>
-<tr>    
+<tr>
     <td class='heading'>Loan Payments</td>
-    <td>$&nbsp;{{ currentquarter_report.2 | intcomma }}</td>        
-    <td>$&nbsp;{{ lastquarter_report.2 | intcomma }}</td>        
+    <td>$&nbsp;{{ currentquarter_report.2 | intcomma }}</td>
+    <td>$&nbsp;{{ lastquarter_report.2 | intcomma }}</td>
     <td>$&nbsp;{{ yearagoquarter_report.2 | intcomma }}</td>
 </tr>
-<tr>    
+<tr>
     <td class='heading'>Total Savings</td>
-    <td>$&nbsp;{{ currentquarter_report.3 | intcomma }}</td>        
-    <td>$&nbsp;{{ lastquarter_report.3 | intcomma }}</td>        
+    <td>$&nbsp;{{ currentquarter_report.3 | intcomma }}</td>
+    <td>$&nbsp;{{ lastquarter_report.3 | intcomma }}</td>
     <td>$&nbsp;{{ yearagoquarter_report.3 | intcomma }}</td>
+</tr>
+<tr class='bottomrow'>
+    <td class='heading'>Surplus/Deficit</td>
+    <td>$&nbsp;{{ currentquarter_report.4 | intcomma }}</td>
+    <td>$&nbsp;{{ lastquarter_report.4 | intcomma }}</td>
+    <td>$&nbsp;{{ yearagoquarter_report.4 | intcomma }}</td>
 </tr>
 
 </table><br>
 
-<p>A comparison of certain account balances as compared to last quarter 
-and this same quarter a year ago is presented below.</p>
+<div id="columnchart_material" style="width: 600px; height: 333px;"></div>
+
+<p>A comparison of certain account balances for {{ quarter_report }}
+as compared to {{ lastquarter_report_name }} and {{ yearago_report }} is presented below.</p>
 
 <table>
 <tr class='toprow'>
-    <th class='heading'>Category</th>    
-    <th>{{ quarter_report }}</th>  
-    <th>Last Quarter</th>    
-    <th>{{ yearago_report }}</th>   
+    <th class='heading'>Category</th>
+    <th>{{ quarter_report }}</th>
+    <th>{{ lastquarter_report_name }}</th>
+    <th>{{ yearago_report }}</th>
+</tr>
+<tr>
+    <td class='heading'>Net Worth</td>
+    <td>$&nbsp;{{ currentquarter_report.5 | intcomma }}</td>
+    <td>$&nbsp;{{ lastquarter_report.5 | intcomma }}</td>
+    <td>$&nbsp;{{ yearagoquarter_report.5 | intcomma }}</td>
+</tr>
+<tr>
+    <td class='heading'>Loan Balance</td>
+    <td>$&nbsp;{{ currentquarter_report.6 | intcomma }}</td>
+    <td>$&nbsp;{{ lastquarter_report.6 | intcomma }}</td>
+    <td>$&nbsp;{{ yearagoquarter_report.6 | intcomma }}</td>
+</tr>
+<tr>
+    <td class='heading'>Savings Balance</td>
+    <td>$&nbsp;{{ currentquarter_report.7 | intcomma }}</td>
+    <td>$&nbsp;{{ lastquarter_report.7 | intcomma }}</td>
+    <td>$&nbsp;{{ yearagoquarter_report.7 | intcomma }}</td>
 </tr>
 </table>
 </div>
+</body>
 {% endblock %}
