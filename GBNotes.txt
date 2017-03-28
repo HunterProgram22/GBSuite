@@ -12,9 +12,6 @@ GBFinance
 
 
 	Analysis
-* Y-axis add dollar sign or lablel
-* Ordering of dates for all-time (and anything else) is not correct may have same issue as with income statements generally that ordering is by date entered as opposed to actual date of object
-* May be related to ordering bug above, but for 2017 defaults to Feb instead of Jan as starting point
 * Format legend so its readable instead of just variable name
 * ENHANCEMENT - Add average/trendline to charts
 * If not year selected error 500 - need to select default year or force select
@@ -32,18 +29,15 @@ a month not existing yet, should instead return that Report not available.
 
 
 	Balance Sheet
-* Issue with ordering of months by date likely also exists here - fix applied to Income Statement should be applied here and tested.
-
 
 
 	Income Statement
-* Issue with 2015 statements not showing in order when year selected, bug may carry over to any year based on date of data entry as opposed to actual date of object in date field.
 * ENHANCEMENT - Add "ALL MONTHS" as option in month selector and add "ALL YEARS" as option in year selector
 
 
 	Cashflow Statement
 * Needs selector for months and year and also a default setting; could default to all for the moment
-* Probably will have same bug on date ordering
+
 
 
 

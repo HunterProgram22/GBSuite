@@ -56,9 +56,9 @@ class Analysis(View):
         send_data = []
         year = request.POST.get("year")
         if year == "ALL":
-            monthly_data = MonthInc.objects.all()
+            monthly_data = MonthInc.objects.all().order_by('date')
         else:
-            monthly_data = MonthInc.objects.filter(date__year=year)
+            monthly_data = MonthInc.objects.filter(date__year=year).order_by('date')
         category = request.POST.get("category")
         for item in monthly_data:
             month = item.date
@@ -82,10 +82,10 @@ class Balance(View):
             month_balance.append(add_month[0])
         elif request.POST.get("month") != '':
             month = request.POST.get("month")
-            month_balance = MonthBal.objects.filter(date__month=month)
+            month_balance = MonthBal.objects.filter(date__month=month).order_by('date')
         elif request.POST.get("year") != '':
             year = request.POST.get("year")
-            month_balance = MonthBal.objects.filter(date__year=year)
+            month_balance = MonthBal.objects.filter(date__year=year).order_by('date')
         else:
             month_balance = MonthBal.objects.order_by('-date')[:2]
         return render(request, 'GBFinance/balancesheet.html', {'month_balance': month_balance})
@@ -118,10 +118,10 @@ class Income(View):
             month_income.append(add_month[0])
         elif request.POST.get("month") != '':
             month = request.POST.get("month")
-            month_income = MonthInc.objects.filter(date__month=month)
+            month_income = MonthInc.objects.filter(date__month=month).order_by('date')
         elif request.POST.get("year") != '':
             year = request.POST.get("year")
-            month_income = MonthInc.objects.filter(date__year=year)
+            month_income = MonthInc.objects.filter(date__year=year).order_by('date')
         else:
             month_income = MonthInc.objects.order_by('-date')[:2]
         return render(request, 'GBFinance/incomestatement.html', {'month_income': month_income})

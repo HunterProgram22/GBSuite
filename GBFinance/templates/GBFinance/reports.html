@@ -26,6 +26,10 @@ td, th {
     border: 1px solid black;
 }
 
+#sigblock {
+    line-height: 14px;
+}
+
 @media(min-width:768px) {
 #reportsheet {
     width: 700px;
@@ -143,6 +147,7 @@ details please refer to the income statements page.</p>
 </table><br>
 
 <div id="columnchart_material" style="width: 600px; height: 333px;"></div>
+<br><br>
 
 <p>A comparison of certain account balances for {{ quarter_report }}
 as compared to {{ lastquarter_report_name }} and {{ yearago_report }} is presented below.</p>
@@ -173,6 +178,13 @@ as compared to {{ lastquarter_report_name }} and {{ yearago_report }} is present
     <td>$&nbsp;{{ yearagoquarter_report.7 | intcomma }}</td>
 </tr>
 </table>
+<br><br>
+<div id='sigblock'>
+<p>Submitted by,</p>
+<p><b>JUSTIN T. KUDELA</b></p>
+<p>Co-Chairman</p>
+</div>
+<br><br><br>
 </div>
 </body>
 {% endblock %}
