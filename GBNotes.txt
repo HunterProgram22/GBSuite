@@ -4,8 +4,7 @@ GBFinance
 
 
 	Finance Dashboard
-* Change pie-chart title - remove 'after-tax'
-* Move net worth and income sentences to under headings
+* ENHANCEMENT - modify text to say surplus or deficit based on value
 
 
 	Manage
@@ -13,14 +12,12 @@ GBFinance
 
 
 	Analysis
-* Chart should display year selected
-* X-axis months should have year(?) if select all-time
 * Y-axis add dollar sign or lablel
-* Change chart title - change with selection
 * Ordering of dates for all-time (and anything else) is not correct may have same issue as with income statements generally that ordering is by date entered as opposed to actual date of object
 * May be related to ordering bug above, but for 2017 defaults to Feb instead of Jan as starting point
 * Format legend so its readable instead of just variable name
 * ENHANCEMENT - Add average/trendline to charts
+* If not year selected error 500 - need to select default year or force select
 
 
 	Quarterly Reports

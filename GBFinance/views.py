@@ -64,7 +64,8 @@ class Analysis(View):
             month = item.date
             amount = getattr(item, category)
             send_data.append((month, amount))
-        return render(request, 'GBFinance/analysis.html', {'send_data': send_data, 'category': category})
+        return render(request, 'GBFinance/analysis.html', {'send_data': send_data, 'category': category,
+                                                            'year': year})
 
 class Balance(View):
     def get(self, request):

@@ -14,15 +14,21 @@
 
             ['Month', '{{ category }}',],
             {% for field in send_data %}
-            ['{{ field.0 | date:'M' }}',  {{ field.1 }},],
+
+                {% if year == 'ALL' %}
+                ['{{ field.0 | date:'M y' }}',  {v:{{ field.1 }}, f:'${{ field.1 }}' },],
+                {% else %}
+                ['{{ field.0 | date:'M' }}',  {v:{{ field.1 }}, f:'${{ field.1 }}' },],
+                {% endif %}
 
           {% endfor %}
         ]);
 
         var options = {
-          title: 'Monthly Income Allocation',
+          title: '{{ year }} {{ category }}',
           curveType: '',
-          legend: { position: 'bottom' }
+          legend: { position: 'bottom' },
+          vAxis: { format: 'currency' },
         };
 
         var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
@@ -49,10 +55,10 @@
     <option value=''>--Select Category--</option>
     <option value='schwab_dividends'>Schwab Dividends</option>
     <option value='expense_checks'>Expense Checks</option>
-    <option value='aep_electric'>AEP Electric</option>
+    <option value='aep_electric' name="AEP Electric">AEP Electric</option>
     <option value='suburban_gas'>Suburban Gas</option>
     <option value='total_utilities'>Total Utilities</option>
-    <option value='total_creditcards'>Total Credit Cards</option>
+    <option value='total_personal_creditcards'>Total Personal Credit Cards</option>
     <option value='public_loan'>Government Loan</option>
     <option value='cashorcheck_purchases'>Cash or Check Purchases</option>
     <option value='daycare'>Daycare</option>

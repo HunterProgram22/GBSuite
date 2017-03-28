@@ -33,7 +33,7 @@
       ]);
 
       // Set chart options
-      var options = {'title':'{{ dash_income.date | date:"F" }} After-tax Income Allocation',
+      var options = {'title':'{{ dash_income.date | date:"F" }} Income Allocation',
                      'width':400,
                      'height':300};
 
@@ -53,18 +53,22 @@
 
     <p>&nbsp;</p>
 
-    <p>The Kudela Partnership Net Worth as of {{ dash_balance.date }} is <b>${{ dash_balance.networth | intcomma }}</b>.</p>
 
     <h5><b>{{ dash_balance.date | date:"F" }} Balance Sheet Summary</b></h5>
+
+    <p>The Kudela Partnership Net Worth as of {{ dash_balance.date }} is <b>${{ dash_balance.networth | intcomma }}</b>.</p>
+
     <ul>
-        <li>Total Cash Available (checking and savings): ${{ dash_balance.current_cash | intcomma }}</li>
+        <li>Total Cash Accounts: ${{ dash_balance.current_cash | intcomma }}</li>
+        <li>Total Current Investments: ${{ dash_balance.total_invest | intcomma }}</li>
         <li>Total Retirement Savings:  ${{ dash_balance.total_retire | intcomma }}</li>
         <li>Total Non-Mortgage Debt (car and student loans): <span style="color:red;">${{ dash_balance.total_loan | intcomma }}</span></li>
     </ul>
 
+    <h5><b>{{ dash_income.date | date:"F" }} Income Statement Summary</b></h5>
+
     <p>For {{ dash_income.date | date:"F" }} there was a surplus/deficit of ${{ dash_income.total_surplus | intcomma }} after all taxes, savings and expenses.</p>
 
-    <h5><b>{{ dash_income.date | date:"F" }} Income Statement Summary</b></h5>
     <ul>
         <li>Total Loan Payments: ${{ dash_income.total_loans | intcomma}}</li>
         <li>Total Personal Spending: ${{ dash_income.total_personal_creditcards | intcomma }}</li>
