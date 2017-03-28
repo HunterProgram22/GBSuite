@@ -67,7 +67,7 @@
     <h5><b>{{ dash_income.date | date:"F" }} Income Statement Summary</b></h5>
     <ul>
         <li>Total Loan Payments: ${{ dash_income.total_loans | intcomma}}</li>
-        <li>Total Personal Spending (credit cards): ${{ dash_income.total_creditcards | intcomma }}</li>
+        <li>Total Personal Spending: ${{ dash_income.total_personal_creditcards | intcomma }}</li>
     </ul>
 
     <p>Please see the Balance Statement, Income Sheet and Cashflow Statement for additional details.</p>

@@ -32,7 +32,7 @@ def report(quarter, year):
     savings = 0
     surplus = 0
     for months in quartermonths:
-        creditcards += months.total_creditcards()
+        creditcards += months.total_personal_creditcards()
         utilities += months.total_utilities()
         loans += months.total_loans()
         savings += months.total_allsavings()

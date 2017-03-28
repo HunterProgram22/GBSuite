@@ -150,7 +150,7 @@ class MonthInc(models.Model):
 
     def __str__(self):
             return str(self.date)
-    
+
     def total_investment(self):
         totalinvestments = self.huntington_interest + self.fifththird_interest + \
             self.capone_interest + self.amex_interest + self.schwab_interest + \
@@ -223,6 +223,10 @@ class MonthInc(models.Model):
     def total_creditcards(self):
         return self.capone_creditcard + self.amex_creditcard + self.discover_creditcard + \
             self.kohls_vicsec_macy_eddiebauer_creditcards + self.katwork_creditcard
+
+    def total_personal_creditcards(self):
+        return self.capone_creditcard + self.amex_creditcard + self.discover_creditcard + \
+            self.kohls_vicsec_macy_eddiebauer_creditcards
 
     def total_cashorcheck(self):
         return self.cashorcheck_purchases + self.daycare + self.taxdeductible_giving

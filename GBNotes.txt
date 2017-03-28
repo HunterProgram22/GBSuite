@@ -1,0 +1,53 @@
+GBFinance
+
+    General
+
+
+	Finance Dashboard
+* Change pie-chart title - remove 'after-tax'
+* Move net worth and income sentences to under headings
+
+
+	Manage
+* ENHANCEMENT - Add ability to edit statements by user not just admin
+
+
+	Analysis
+* Chart should display year selected
+* X-axis months should have year(?) if select all-time
+* Y-axis add dollar sign or lablel
+* Change chart title - change with selection
+* Ordering of dates for all-time (and anything else) is not correct may have same issue as with income statements generally that ordering is by date entered as opposed to actual date of object
+* May be related to ordering bug above, but for 2017 defaults to Feb instead of Jan as starting point
+* Format legend so its readable instead of just variable name
+* ENHANCEMENT - Add average/trendline to charts
+
+
+	Quarterly Reports
+* Quarterly reports - using try/except in functions.py to deal with
+a month not existing yet, should instead return that Report not available.
+* If report does return results but not full quarter it should indicate that or lese also return Report not available.
+* If an early Q Report is selected that doesn't have a year of prior history get an error need to add error handling for that as well.
+* Fix personal spending to not include Kat's work cc - rationale sometimes personal spending includes Kat work, but Kat work never includes personal spending
+* Column chart needs to be set to 100% width so it adjust on smaller screens - currently at fixed width
+* Add whitespace at end of report so balance chart can be scrolled to middle of screen
+* ENHANCEMENT - add hyperlinks in text of report for income statemetn and balance sheet that takes you to that specific statement
+
+
+	Balance Sheet
+* Issue with ordering of months by date likely also exists here - fix applied to Income Statement should be applied here and tested.
+
+
+
+	Income Statement
+* Issue with 2015 statements not showing in order when year selected, bug may carry over to any year based on date of data entry as opposed to actual date of object in date field.
+* ENHANCEMENT - Add "ALL MONTHS" as option in month selector and add "ALL YEARS" as option in year selector
+
+
+	Cashflow Statement
+* Needs selector for months and year and also a default setting; could default to all for the moment
+* Probably will have same bug on date ordering
+
+
+
+
