@@ -45,6 +45,12 @@ td, th {
 #dollar {
     float: left;
 }
+
+#instructions {
+    font-size: 11px;
+    margin: 2px;
+    width: 315px;
+}
 </style>
 <h1>Balance Sheet</h1>
 
@@ -78,7 +84,12 @@ td, th {
 <input type="submit">
 </form>
 </div>
-
+<div id='instructions'>
+    <p>If you select a month and year data for that specific month is shown next
+    to the most current month. Selecting only a month returns all months for any year,
+    (i.e. January returns Jan. 2013, Jan. 2014, Jan. 2015, etc.) and similarly
+    selecting only a year returns all months for that year.</p>
+</div>
 <div>
 <button onclick="myFunction()">Show/Hide Detail</button>
 </div>

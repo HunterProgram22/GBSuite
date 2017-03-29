@@ -143,3 +143,21 @@ class Cash(View):
         month_cash = MonthInc.objects.all().order_by('-date')
         month_cash = month_cash[0:2]
         return render(request, 'GBFinance/cashflow.html', {'month_cash': month_cash})
+
+    def post(self, request):
+        if request.POST.get("month") != '' and request.POST.get("year") != '':
+            month = request.POST.get("month")
+            year = request.POST.get("year")
+            month_cash = MonthInc.objects.filter(date__month=month).filter(date__year=year)
+            month_cash = list(month_cash[:])
+            add_month = MonthInc.objects.order_by('-date')[0:1]
+            month_cash.append(add_month[0])
+        elif request.POST.get("month") != '':
+            month = request.POST.get("month")
+            month_cash = MonthInc.objects.filter(date__month=month).order_by('date')
+        elif request.POST.get("year") != '':
+            year = request.POST.get("year")
+            month_cash = MonthInc.objects.filter(date__year=year).order_by('date')
+        else:
+            month_cash = MonthInc.objects.order_by('-date')[:2]
+        return render(request, 'GBFinance/cashflow.html', {'month_cash': month_cash})
