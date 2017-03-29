@@ -43,10 +43,10 @@ td, th {
 
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
-          ['Quarter', 'Spending', 'Utilities', 'Savings'],
-          ['{{ quarter_report }}', {{ currentquarter_report.0 }}, {{ currentquarter_report.1 }}, {{ currentquarter_report.3 }}],
-          ['{{ lastquarter_report_name}}', {{ lastquarter_report.0 }}, {{ lastquarter_report.1 }}, {{ lastquarter_report.3 }}],
-          ['{{ yearago_report }}', {{ yearagoquarter_report.0 }}, {{ yearagoquarter_report.1 }}, {{ yearagoquarter_report.3 }}],
+          ['Quarter', 'Personal Spending', 'Loan Payments', 'Savings'],
+          ['{{ quarter_report }}', {{ currentquarter_report.0 }}, {{ currentquarter_report.2 }}, {{ currentquarter_report.3 }}],
+          ['{{ lastquarter_report_name}}', {{ lastquarter_report.0 }}, {{ lastquarter_report.2 }}, {{ lastquarter_report.3 }}],
+          ['{{ yearago_report }}', {{ yearagoquarter_report.0 }}, {{ yearagoquarter_report.2 }}, {{ yearagoquarter_report.3 }}],
         ]);
 
         var options = {
@@ -146,7 +146,7 @@ details please refer to the income statements page.</p>
 
 </table><br>
 
-<div id="columnchart_material" style="width: 600px; height: 333px;"></div>
+<div id="columnchart_material" style="width: 100%; height: 333px;"></div>
 <br><br>
 
 <p>A comparison of certain account balances for {{ quarter_report }}

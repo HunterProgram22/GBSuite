@@ -19,12 +19,11 @@ GBFinance
 
 	Quarterly Reports
 * Quarterly reports - using try/except in functions.py to deal with
-a month not existing yet, should instead return that Report not available.
-* If report does return results but not full quarter it should indicate that or lese also return Report not available.
-* If an early Q Report is selected that doesn't have a year of prior history get an error need to add error handling for that as well.
-* Fix personal spending to not include Kat's work cc - rationale sometimes personal spending includes Kat work, but Kat work never includes personal spending
-* Column chart needs to be set to 100% width so it adjust on smaller screens - currently at fixed width
-* Add whitespace at end of report so balance chart can be scrolled to middle of screen
+a month not existing yet, should instead return that Report not available - THIS
+IS NOT AN ISSUE IF A REPORT OPTION ISN'T ADDED UNTIL READY.
+* If report does return results but not full quarter it should indicate that or
+least also return Report not available - THIS IS NOT AN ISSUE IF A REPORT OPTION
+ISN'T ADDED UNTIL READY.
 * ENHANCEMENT - add hyperlinks in text of report for income statemetn and balance sheet that takes you to that specific statement
 
 

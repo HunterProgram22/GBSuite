@@ -44,7 +44,12 @@ def report(quarter, year):
         savingsbalance = quarter_end[0].total_save()
     except IndexError:
         quarter_end = MonthBal.objects.filter(date__year=yearbal).filter(date__month=monthend)
-        networth = quarter_end[0].networth()
-        loanbalance = quarter_end[0].total_loan()
-        savingsbalance = quarter_end[0].total_save()
+        try:
+            networth = quarter_end[0].networth()
+            loanbalance = quarter_end[0].total_loan()
+            savingsbalance = quarter_end[0].total_save()
+        except IndexError:
+            networth = 'N/A'
+            loanbalance = 'N/A'
+            savingsbalance = 'N/A'
     return (creditcards, utilities, loans, savings, surplus, networth, loanbalance, savingsbalance)
