@@ -9,7 +9,7 @@ class Home(View):
     def get(self, request):
         year_stats = []
         years_played = []
-        rounds = Round.objects.filter(holesplayed=18)
+        rounds = Round.objects.filter(holesplayed=18).order_by('-date')
         for round in rounds:
             if round.get_year() not in years_played:
                 years_played.append(round.get_year())
@@ -18,7 +18,7 @@ class Home(View):
             year_stats.append(yearAverages(year_rounds))
         year_stats9 = []
         years_played9 = []
-        rounds9 = Round.objects.filter(holesplayed=9)
+        rounds9 = Round.objects.filter(holesplayed=9).order_by('-date')
         for round9 in rounds9:
             if round9.get_year() not in years_played9:
                 years_played9.append(round9.get_year())
