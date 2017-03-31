@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.views import View
 from .forms import MonthBalForm, MonthIncForm
 from .models import MonthBal, MonthInc
-from .functions import report
+from .functions import report, get_report_criteria
 
 
 class Home(View):
@@ -21,30 +21,22 @@ class Reports(View):
         return render(request, 'GBFinance/reports.html', {})
 
     def post(self, request):
-        quarter = request.POST.get("quarter")[0]
-        year = request.POST.get("quarter")[2:]
-        quarter_report = quarter + "Q " + year
-        yearago_report = quarter + "Q " + str(int(year)-1)
-        currentquarter_report = report(quarter, year)
-        if quarter == "1":
-            lastquarter = "4"
-            lastquarteryear = str(int(year)-1)
-        else:
-            lastquarter = str(int(quarter)-1)
-            lastquarteryear = year
-        lastquarter_report = report(lastquarter, lastquarteryear)
-        lastquarter_report_name = lastquarter + "Q " + lastquarteryear
-        year = str(int(year)-1)
-        yearagoquarter_report = report(quarter, year)
-        ''' _reports are returned as a tuple in the format (total_creditcards,
-        total_utilities, total_loans, total_savings)'''
+        this_quarter, this_year, last_quarter, last_quarteryear, \
+            current_quarter_report_name, last_quarter_report_name, \
+            yearago_quarter_report_name = get_report_criteria(request)
+        current_quarter_report = report(this_quarter, this_year)
+        last_quarter_report = report(last_quarter, last_quarteryear)
+        yearago = str(int(this_year)-1)
+        yearago_quarter_report = report(this_quarter, yearago)
+        ''' _reports are returned as a tuple in the format
+        (total_creditcards,total_utilities, total_loans, total_savings)'''
         return render(request, 'GBFinance/reports.html',
-                      {'quarter_report': quarter_report,
-                       'lastquarter_report_name': lastquarter_report_name,
-                       'yearago_report': yearago_report,
-                       'currentquarter_report': currentquarter_report,
-                       'lastquarter_report': lastquarter_report,
-                       'yearagoquarter_report': yearagoquarter_report})
+                      {'current_quarter_report': current_quarter_report,
+                       'last_quarter_report': last_quarter_report,
+                       'yearago_quarter_report': yearago_quarter_report,
+                       'current_quarter_report_name': current_quarter_report_name,
+                       'last_quarter_report_name': last_quarter_report_name,
+                       'yearago_quarter_report_name': yearago_quarter_report_name})
 
 
 class Analysis(View):

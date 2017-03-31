@@ -44,15 +44,15 @@ td, th {
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Quarter', 'Personal Spending', 'Loan Payments', 'Savings'],
-          ['{{ quarter_report }}', {{ currentquarter_report.0 }}, {{ currentquarter_report.2 }}, {{ currentquarter_report.3 }}],
-          ['{{ lastquarter_report_name}}', {{ lastquarter_report.0 }}, {{ lastquarter_report.2 }}, {{ lastquarter_report.3 }}],
-          ['{{ yearago_report }}', {{ yearagoquarter_report.0 }}, {{ yearagoquarter_report.2 }}, {{ yearagoquarter_report.3 }}],
+          ['{{ current_quarter_report_name }}', {{ current_quarter_report.0 }}, {{ current_quarter_report.2 }}, {{ current_quarter_report.3 }}],
+          ['{{ last_quarter_report_name}}', {{ last_quarter_report.0 }}, {{ last_quarter_report.2 }}, {{ last_quarter_report.3 }}],
+          ['{{ yearago_quarter_report_name }}', {{ yearago_quarter_report.0 }}, {{ yearago_quarter_report.2 }}, {{ yearago_quarter_report.3 }}],
         ]);
 
         var options = {
           chart: {
             title: 'Quarterly Comparison',
-            subtitle: 'Report for {{ quarter_report }}',
+            subtitle: 'Report for {{ current_quarter_report_name }}',
           }
         };
 
@@ -93,55 +93,55 @@ td, th {
 </div>
 
 
-<h2>The Kudela Partnership {{ quarter_report }} Report</h2>
+<h2>The Kudela Partnership {{ current_quarter_report_name }} Report</h2>
 
 <div id="reportsheet">
-<p>A summary of the financial data for {{ quarter_report }} is as follows:</p>
+<p>A summary of the financial data for {{ current_quarter_report_name }} is as follows:</p>
 
 <p>The Net Worth of the Kudela Partnership at the close of the quarter was:
-   <b>${{ currentquarter_report.5 | intcomma}}</b>.</p>
+   <b>${{ current_quarter_report.5 | intcomma}}</b>.</p>
 
-<p>A comparison of spending and saving for {{ quarter_report }} as compared to {{ lastquarter_report_name }}
-and {{ yearago_report }} is presented below. Please note that the numbers
+<p>A comparison of spending and saving for {{ current_quarter_report_name }} as compared to {{ last_quarter_report_name }}
+and {{ yearago_quarter_report_name }} is presented below. Please note that the numbers
 are not inclusive of all categories from the monthly income statements. For specific
 details please refer to the income statements page.</p>
 
 <table>
 <tr class='toprow'>
     <th class='heading'>Category</th>
-    <th>{{ quarter_report }}</th>
-    <th>{{ lastquarter_report_name }}</th>
-    <th>{{ yearago_report }}</th>
+    <th>{{ current_quarter_report_name }}</th>
+    <th>{{ last_quarter_report_name }}</th>
+    <th>{{ yearago_quarter_report_name }}</th>
 </tr>
 <tr>
     <td class='heading'>Personal Spending</td>
-    <td>$&nbsp;{{ currentquarter_report.0 | intcomma }}</td>
-    <td>$&nbsp;{{ lastquarter_report.0 | intcomma }}</td>
-    <td>$&nbsp;{{ yearagoquarter_report.0 | intcomma }}</td>
+    <td>$&nbsp;{{ current_quarter_report.0 | intcomma }}</td>
+    <td>$&nbsp;{{ last_quarter_report.0 | intcomma }}</td>
+    <td>$&nbsp;{{ yearago_quarter_report.0 | intcomma }}</td>
 </tr>
 <tr>
     <td class='heading'>Utilities</td>
-    <td>$&nbsp;{{ currentquarter_report.1 | intcomma }}</td>
-    <td>$&nbsp;{{ lastquarter_report.1 | intcomma }}</td>
-    <td>$&nbsp;{{ yearagoquarter_report.1 | intcomma }}</td>
+    <td>$&nbsp;{{ current_quarter_report.1 | intcomma }}</td>
+    <td>$&nbsp;{{ last_quarter_report.1 | intcomma }}</td>
+    <td>$&nbsp;{{ yearago_quarter_report.1 | intcomma }}</td>
 </tr>
 <tr>
     <td class='heading'>Loan Payments</td>
-    <td>$&nbsp;{{ currentquarter_report.2 | intcomma }}</td>
-    <td>$&nbsp;{{ lastquarter_report.2 | intcomma }}</td>
-    <td>$&nbsp;{{ yearagoquarter_report.2 | intcomma }}</td>
+    <td>$&nbsp;{{ current_quarter_report.2 | intcomma }}</td>
+    <td>$&nbsp;{{ last_quarter_report.2 | intcomma }}</td>
+    <td>$&nbsp;{{ yearago_quarter_report.2 | intcomma }}</td>
 </tr>
 <tr>
     <td class='heading'>Total Savings</td>
-    <td>$&nbsp;{{ currentquarter_report.3 | intcomma }}</td>
-    <td>$&nbsp;{{ lastquarter_report.3 | intcomma }}</td>
-    <td>$&nbsp;{{ yearagoquarter_report.3 | intcomma }}</td>
+    <td>$&nbsp;{{ current_quarter_report.3 | intcomma }}</td>
+    <td>$&nbsp;{{ last_quarter_report.3 | intcomma }}</td>
+    <td>$&nbsp;{{ yearago_quarter_report.3 | intcomma }}</td>
 </tr>
 <tr class='bottomrow'>
     <td class='heading'>Surplus/Deficit</td>
-    <td>$&nbsp;{{ currentquarter_report.4 | intcomma }}</td>
-    <td>$&nbsp;{{ lastquarter_report.4 | intcomma }}</td>
-    <td>$&nbsp;{{ yearagoquarter_report.4 | intcomma }}</td>
+    <td>$&nbsp;{{ current_quarter_report.4 | intcomma }}</td>
+    <td>$&nbsp;{{ last_quarter_report.4 | intcomma }}</td>
+    <td>$&nbsp;{{ yearago_quarter_report.4 | intcomma }}</td>
 </tr>
 
 </table><br>
@@ -149,38 +149,38 @@ details please refer to the income statements page.</p>
 <div id="columnchart_material" style="width: 100%; height: 333px;"></div>
 <br><br>
 
-<p>A comparison of certain account balances for {{ quarter_report }}
-as compared to {{ lastquarter_report_name }} and {{ yearago_report }} is presented below.</p>
+<p>A comparison of certain account balances for {{ current_quarter_report_name }}
+as compared to {{ last_quarter_report_name }} and {{ yearago_quarter_report_name }} is presented below.</p>
 
 <table>
 <tr class='toprow'>
     <th class='heading'>Category</th>
-    <th>{{ quarter_report }}</th>
-    <th>{{ lastquarter_report_name }}</th>
-    <th>{{ yearago_report }}</th>
+    <th>{{ current_quarter_report_name }}</th>
+    <th>{{ last_quarter_report_name }}</th>
+    <th>{{ yearago_quarter_report_name }}</th>
 </tr>
 <tr>
     <td class='heading'>Net Worth</td>
-    <td>$&nbsp;{{ currentquarter_report.5 | intcomma }}</td>
-    <td>$&nbsp;{{ lastquarter_report.5 | intcomma }}</td>
-    <td>$&nbsp;{{ yearagoquarter_report.5 | intcomma }}</td>
+    <td>$&nbsp;{{ current_quarter_report.5 | intcomma }}</td>
+    <td>$&nbsp;{{ last_quarter_report.5 | intcomma }}</td>
+    <td>$&nbsp;{{ yearago_quarter_report.5 | intcomma }}</td>
 </tr>
 <tr>
     <td class='heading'>Loan Balance</td>
-    <td>$&nbsp;{{ currentquarter_report.6 | intcomma }}</td>
-    <td>$&nbsp;{{ lastquarter_report.6 | intcomma }}</td>
-    <td>$&nbsp;{{ yearagoquarter_report.6 | intcomma }}</td>
+    <td>$&nbsp;{{ current_quarter_report.6 | intcomma }}</td>
+    <td>$&nbsp;{{ last_quarter_report.6 | intcomma }}</td>
+    <td>$&nbsp;{{ yearago_quarter_report.6 | intcomma }}</td>
 </tr>
 <tr>
     <td class='heading'>Savings Balance</td>
-    <td>$&nbsp;{{ currentquarter_report.7 | intcomma }}</td>
-    <td>$&nbsp;{{ lastquarter_report.7 | intcomma }}</td>
-    <td>$&nbsp;{{ yearagoquarter_report.7 | intcomma }}</td>
+    <td>$&nbsp;{{ current_quarter_report.7 | intcomma }}</td>
+    <td>$&nbsp;{{ last_quarter_report.7 | intcomma }}</td>
+    <td>$&nbsp;{{ yearago_quarter_report.7 | intcomma }}</td>
 </tr>
 </table>
 <br><br>
 <div id='sigblock'>
-<p>Submitted by,</p>
+<p>Prepared and submitted by,</p>
 <p><b>JUSTIN T. KUDELA</b></p>
 <p>Co-Chairman</p>
 </div>

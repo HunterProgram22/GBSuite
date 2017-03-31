@@ -1,5 +1,6 @@
 from .models import MonthInc, MonthBal
 
+
 def report(quarter, year):
     qmonthstart, qmonthend, qmonthbal, qyearbal = get_quarter_months(quarter, year)
     quartermonths = MonthInc.objects.filter(date__year=year).filter(
@@ -8,6 +9,21 @@ def report(quarter, year):
     networth, loanbalance, savingsbalance = get_quarter_balance(qmonthbal, qyearbal)
     return (creditcards, utilities, loans, savings, surplus, networth, loanbalance, savingsbalance)
 
+
+def get_report_criteria(request):
+    quarter = request.POST.get("quarter")[0]
+    year = request.POST.get("quarter")[2:]
+    quarter_report_name = quarter + "Q " + year
+    yearago_report_name = quarter + "Q " + str(int(year)-1)
+    if quarter == "1":
+        lastquarter_month = "4"
+        lastquarter_year = str(int(year)-1)
+    else:
+        lastquarter_month = str(int(quarter)-1)
+        lastquarter_year = year
+    last_quarter_report_name = lastquarter_month + "Q " + lastquarter_year
+    return (quarter, year, lastquarter_month, lastquarter_year, \
+        quarter_report_name, last_quarter_report_name, yearago_report_name)
 
 def get_quarter_months(quarter, year):
     '''monthbal is set to month after end of quarter
