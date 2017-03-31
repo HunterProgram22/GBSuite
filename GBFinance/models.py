@@ -29,63 +29,50 @@ class MonthBal(models.Model):
             return str(self.date)
 
         def total_check(self):
-            totalcheck = self.fifththird_check + self.huntington_check
-            return totalcheck
+            return (self.fifththird_check + self.huntington_check)
 
         def total_save(self):
-            totalsave = self.fifththird_save + self.huntington_save \
-                + self.capone_save + self.amex_save
-            return totalsave
+            return (self.fifththird_save + self.huntington_save \
+                + self.capone_save + self.amex_save)
 
         def current_cash(self):
             return (self.total_check() + self.total_save())
 
         def total_invest(self):
-            totalinvest = self.buckeye_invest + self.deacon_invest
-            return totalinvest
+            return (self.buckeye_invest + self.deacon_invest)
 
         def total_retire(self):
-            totalretire = self.opers_retire + self.four01_retire \
-                + self.four57_retire + self.roth_retire
-            return totalretire
+            return (self.opers_retire + self.four01_retire \
+                + self.four57_retire + self.roth_retire)
 
         def total_physical(self):
-            totalphysical = self.justin_car+self.kat_car+self.main_home
-            return totalphysical
+            return (self.justin_car+self.kat_car+self.main_home)
 
         def total_assets(self):
-            totalassets = self.fifththird_check + self.huntington_check + \
+            return (self.fifththird_check + self.huntington_check + \
                 self.fifththird_save + self.huntington_save \
                 + self.capone_save + self.amex_save + \
                 self.buckeye_invest + self.deacon_invest + \
                 self.opers_retire + self.four01_retire \
                 + self.four57_retire + self.roth_retire + \
-                self.justin_car+self.kat_car+self.main_home
-            return totalassets
+                self.justin_car+self.kat_car+self.main_home)
 
         def total_credit(self):
-            totalcredit = self.amex_credit+self.discover_credit+self.capone_credit
-            return totalcredit
+            return (self.amex_credit+self.discover_credit+self.capone_credit)
 
         def total_loan(self):
-            totalloan = self.car_loan+self.privstudent_loan+self.pubstudent_loan
-            return totalloan
+            return (self.car_loan+self.privstudent_loan+self.pubstudent_loan)
 
         def total_mortgage(self):
-            totalmortgage = self.main_mortgage
-            return totalmortgage
+            return (self.main_mortgage)
 
         def total_liabilities(self):
-            totalliabilities = self.amex_credit+self.discover_credit + \
+            return (self.amex_credit+self.discover_credit + \
             self.capone_credit + self.car_loan+self.privstudent_loan + \
-            self.pubstudent_loan + self.main_mortgage
-            return totalliabilities
+            self.pubstudent_loan + self.main_mortgage)
 
         def networth(self):
-            assets = self.total_assets()
-            liabilities = self.total_liabilities()
-            networth = assets - liabilities
-            return networth
+            return (self.total_assets() - self.total_liabilities())
 
 
 class MonthInc(models.Model):
@@ -152,54 +139,44 @@ class MonthInc(models.Model):
             return str(self.date)
 
     def total_investment(self):
-        totalinvestments = self.huntington_interest + self.fifththird_interest + \
+        return (self.huntington_interest + self.fifththird_interest + \
             self.capone_interest + self.amex_interest + self.schwab_interest + \
-            self.schwab_dividends
-        return totalinvestments
+            self.schwab_dividends)
 
     def total_nontaxable_income(self):
-        totalnontaxableincome = self.expense_checks + self.miscellaneous_income + \
-            self.refund_rebate_repayment + self.gift_income
-        return totalnontaxableincome
+        return (self.expense_checks + self.miscellaneous_income + \
+            self.refund_rebate_repayment + self.gift_income)
 
     def total_grossjob_income(self):
-        totalgrossjob = self.supremecourt_salary + self.cdm_salary
-        return totalgrossjob
+        return (self.supremecourt_salary + self.cdm_salary)
 
     def total_all_income(self):
-        totalallincome = self.total_investment() + self.total_nontaxable_income() + \
-            self.total_grossjob_income()
-        return totalallincome
+        return (self.total_investment() + self.total_nontaxable_income() + \
+            self.total_grossjob_income())
 
     def total_pretax_savings(self):
-        totalpretax = self.opers_retirement + self.four57b_retirement + \
-            self.four01k_retirement
-        return totalpretax
+        return (self.opers_retirement + self.four57b_retirement + \
+            self.four01k_retirement)
 
     def total_posttax_savings(self):
-        totalposttax = self.roth_retirement + self.schwab_investments + \
+        return (self.roth_retirement + self.schwab_investments + \
             self.amex_savings + self.fifththird_savings + self.capone_savings + \
-            self.five29_college + self.huntington_savings
-        return totalposttax
+            self.five29_college + self.huntington_savings)
 
     def total_allsavings(self):
-        totalallsavings = self.total_pretax_savings() + self.total_posttax_savings()
-        return totalallsavings
+        return (self.total_pretax_savings() + self.total_posttax_savings())
 
     def total_taxes(self):
-        totaltaxes = self.federal_tax + self.social_security + self.medicare + \
-            self.ohio_tax + self.columbus_tax
-        return totaltaxes
+        return (self.federal_tax + self.social_security + self.medicare + \
+            self.ohio_tax + self.columbus_tax)
 
     def total_insurance(self):
-        totalinsurance = self.health_insurance + self.supplementallife_insurance + \
+        return (self.health_insurance + self.supplementallife_insurance + \
             self.flex_spending + self.cdm_std + self.cdmsupplemental_ltd + \
-            self.parking + self.parking_admin
-        return totalinsurance
+            self.parking + self.parking_admin)
 
     def total_deductions(self):
-        totaldeductions = self.total_taxes() + self.total_insurance()
-        return totaldeductions
+        return (self.total_taxes() + self.total_insurance())
 
     def net_income(self):
         income = self.total_nontaxable_income() + self.total_grossjob_income()
@@ -208,41 +185,40 @@ class MonthInc(models.Model):
         return netincome
 
     def total_homecosts(self):
-        return self.main_mortgage + self.hoa_fees
+        return (self.main_mortgage + self.hoa_fees)
 
     def total_utilities(self):
-        utilities = self.auto_insurance + self.aep_electric + self.rumpke_trash + \
+        return (self.auto_insurance + self.aep_electric + self.rumpke_trash + \
             self.delaware_sewer + self.delco_water + self.suburban_gas + \
             self.verizon_kat + self.sprint_justin + self.directtv_cable + \
-            self.timewarner_internet
-        return utilities
+            self.timewarner_internet)
 
     def total_loans(self):
-        return self.caponeauto_loan + self.public_loan + self.private_loan
+        return (self.caponeauto_loan + self.public_loan + self.private_loan)
 
     def total_creditcards(self):
-        return self.capone_creditcard + self.amex_creditcard + self.discover_creditcard + \
-            self.kohls_vicsec_macy_eddiebauer_creditcards + self.katwork_creditcard
+        return (self.capone_creditcard + self.amex_creditcard + self.discover_creditcard + \
+            self.kohls_vicsec_macy_eddiebauer_creditcards + self.katwork_creditcard)
 
     def total_personal_creditcards(self):
-        return self.capone_creditcard + self.amex_creditcard + self.discover_creditcard + \
-            self.kohls_vicsec_macy_eddiebauer_creditcards
+        return (self.capone_creditcard + self.amex_creditcard + self.discover_creditcard + \
+            self.kohls_vicsec_macy_eddiebauer_creditcards)
 
     def total_cashorcheck(self):
-        return self.cashorcheck_purchases + self.daycare + self.taxdeductible_giving
+        return (self.cashorcheck_purchases + self.daycare + self.taxdeductible_giving)
 
     def total_expenditures(self):
-        return self.total_homecosts() + self.total_utilities() + self.total_loans() + \
-            self.total_creditcards() + self.total_cashorcheck()
+        return (self.total_homecosts() + self.total_utilities() + self.total_loans() + \
+            self.total_creditcards() + self.total_cashorcheck())
 
     def total_surplus(self):
-        return self.net_income() - self.total_expenditures()
+        return (self.net_income() - self.total_expenditures())
 
     def available_job_income(self):
         return (self.total_grossjob_income() - (self.total_deductions()+self.opers_retirement))
 
     def cash_available(self):
-        return self.available_job_income() + self.total_nontaxable_income()
+        return (self.available_job_income() + self.total_nontaxable_income())
 
     def cashflow(self):
         return (self.cash_available() - self.total_expenditures())
