@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.views import View
 from .forms import MonthBalForm, MonthIncForm
 from .models import MonthBal, MonthInc
-from .functions import report, get_report_criteria
+from .functions import report, get_report_criteria, get_analysis_data
 
 
 class Home(View):
@@ -45,19 +45,21 @@ class Analysis(View):
         return render(request, 'GBFinance/analysis.html', {'send_data': send_data})
 
     def post(self, request):
-        send_data = []
         year = request.POST.get("year")
-        if year == "ALL":
+        if year == "":
+            return redirect("GBFinanceanalysis")
+        elif year == "ALL":
             monthly_data = MonthInc.objects.all().order_by('date')
         else:
             monthly_data = MonthInc.objects.filter(date__year=year).order_by('date')
         category = request.POST.get("category")
-        for item in monthly_data:
-            month = item.date
-            amount = getattr(item, category)
-            send_data.append((month, amount))
-        return render(request, 'GBFinance/analysis.html', {'send_data': send_data, 'category': category,
-                                                            'year': year})
+        if category == "":
+            return redirect("GBFinanceanalysis")
+        send_data = get_analysis_data(monthly_data, category)
+        return render(request, 'GBFinance/analysis.html',
+                    {'send_data': send_data,
+                     'category': category,
+                     'year': year})
 
 class Balance(View):
     def get(self, request):

@@ -63,3 +63,12 @@ def get_quarter_balance(qmonthbal, qyearbal):
     except IndexError:
         networth, loanbalance, savingsbalance = 'N/A', 'N/A', 'N/A'
     return (networth, loanbalance, savingsbalance)
+
+
+def get_analysis_data(monthly_data, category):
+    send_data = []
+    for item in monthly_data:
+        month = item.date
+        amount = getattr(item, category)
+        send_data.append((month, amount))
+    return send_data
