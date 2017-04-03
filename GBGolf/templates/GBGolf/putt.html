@@ -1,0 +1,60 @@
+{% extends 'GBGolf/base.html' %}
+
+{% block content %}
+<head>
+    <script>
+    var attempts = 0;
+    var makes = 0;
+    function attempt() {
+        attempts += 1;
+        document.getElementById("id_attempts").value = attempts;
+    };
+    function make() {
+        attempts += 1;
+        makes += 1;
+        document.getElementById("id_attempts").value = attempts;
+        document.getElementById("id_makes").value = makes;
+    };
+    </script>
+</head>
+<body>
+<form method="POST" id="puttform">{% csrf_token %}
+
+
+{{ form.as_p }}
+
+<button type="button" onclick="attempt()">Putt Missed</button>
+<button type="button" onclick="make()">Putt Made</button><br><br>
+
+<button type="submit">Submit</button>
+
+</form>
+
+<div id="puttsheet">
+<table width="100%" style="border: 3px solid black;">
+<tr style="border: 1px solid black;">
+    <th>Date</th>
+    <th>Distance</th>
+    <th>Attempts</th>
+    <th>Makes</th>
+</tr>
+<!-->{% for putts in putt_stats %}
+<tr>
+    <td>{{putts.date}}</td>
+    <td>{{putts.distance}}</td>
+    <td>{{putts.attempts}}</td>
+    <td>{{putts.makes}}</td>
+</tr>
+{% endfor %}-->
+</table>
+</div>
+
+
+<script>
+<!--document.getElementById('id_date').valueAsDate = new Date()-->
+</script>
+</body>
+
+
+
+{% endblock %}
