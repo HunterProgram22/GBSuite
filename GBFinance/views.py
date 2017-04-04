@@ -134,8 +134,7 @@ class Income_new(View):
 
 class Cash(View):
     def get(self, request):
-        month_cash = MonthInc.objects.all().order_by('-date')
-        month_cash = month_cash[0:2]
+        month_cash = MonthInc.objects.all().order_by('-date')[:2]
         return render(request, 'GBFinance/cashflow.html', {'month_cash': month_cash})
 
     def post(self, request):
