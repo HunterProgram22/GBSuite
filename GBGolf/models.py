@@ -57,15 +57,3 @@ class Shots(models.Model):
     putt = models.IntegerField()
     penal = models.IntegerField()
     coursemgmt = models.IntegerField()
-    
-
-class PuttPractice(models.Model):
-    date = models.DateField()
-    distance = models.IntegerField()
-    attempts = models.IntegerField()
-    makes = models.IntegerField()
-    
-
-
-
-

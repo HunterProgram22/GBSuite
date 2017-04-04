@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Round, Course, Shots, PuttPractice
+from .models import Round, Course, Shots
 
 class RoundForm(forms.ModelForm):
     
@@ -23,10 +23,4 @@ class ShotsForm(forms.ModelForm):
         fields = ('date', 'drdist', 'dracc', 'par3tee', 'lngdist', 'lngacc',
                   'shtdist', 'shtacc', 'pitch', 'chip', 'putt', 'penal',
                   'coursemgmt')
-        
-class PuttForm(forms.ModelForm):
-    
-    class Meta:
-        model = PuttPractice
-        fields = ('date', 'distance', 'attempts', 'makes')
         
