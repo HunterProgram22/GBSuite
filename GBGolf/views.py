@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from .forms import RoundForm, CourseForm, ShotsForm
-from .models import Round, Shots
+from .forms import RoundForm, CourseForm, ShotsForm, PuttForm
+from .models import Round, Shots, PuttPractice
 from .functions import calcHandicap, yearAverages
 
 
@@ -58,6 +58,11 @@ class Delete_round(View):
         elif round.holesplayed == 9:
             round.delete()
             return redirect('GBGolfrounds9')
+
+class Putt_practice(View):
+    def get(self, request):
+        form = PuttForm()
+        return render(request, 'GBGolf/Putt_practice.html', {'form': form})
 
 class Course_new(View):
     def post(self, request):
