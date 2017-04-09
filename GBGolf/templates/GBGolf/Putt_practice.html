@@ -1,0 +1,54 @@
+{% extends 'GBGolf/base.html' %}
+
+{% block content %}
+
+<head>
+    <style>
+        .gb1{
+            margin: 4px 2px 4px 2px;
+            width: 100px;
+        }
+    </style>
+
+	<script>
+	var attempts = 0;
+	var makes = 0;
+	function attempt() {
+		attempts += 1;
+		document.getElementById("id_attempts").value = attempts;
+	};
+	function make() {
+		attempts += 1;
+		makes += 1;
+		document.getElementById("id_attempts").value = attempts;
+		document.getElementById("id_makes").value = makes;
+	};
+
+
+
+	</script>
+
+</head>
+<body>
+
+<h3>Putting Practice</h3>
+
+<form method="POST">{% csrf_token %}
+        <p class="gb1">Date: {{ form.date }}</p>
+        <p class="gb1">Distance: {{ form.distance }}</p>
+
+    <button class="gb1" type="button" onclick="attempt()">Putt Missed</button>
+    <button class="gb1" type="button" onclick="make()">Putt Made</button><br>
+
+        <p class="gb1">Attempts: {{ form.attempts }}</p>
+        <p class="gb1">Makes: {{ form.makes }}</p>
+
+    <button class="gb1" type="submit" class="save btn btn-default">Submit</button>
+
+</form>
+
+
+</body>
+
+
+{% endblock %}

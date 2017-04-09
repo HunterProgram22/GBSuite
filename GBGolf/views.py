@@ -3,7 +3,6 @@ from django.views import View
 from .forms import RoundForm, CourseForm, ShotsForm, PuttForm
 from .models import Round, Shots, PuttPractice
 from .functions import calcHandicap, yearAverages
-from django.http.response import HttpResponse
 
 
 class Home(View):
@@ -60,6 +59,11 @@ class Delete_round(View):
             round.delete()
             return redirect('GBGolfrounds9')
 
+class Putt_practice(View):
+    def get(self, request):
+        form = PuttForm()
+        return render(request, 'GBGolf/Putt_practice.html', {'form': form})
+
 class Course_new(View):
     def post(self, request):
         form = CourseForm(request.POST)
@@ -99,24 +103,6 @@ class Rounds9(View):
     def get(self, request):
         round_stats9 = Round.objects.filter(holesplayed=9).order_by('-date')
         return render(request, 'GBGolf/rounds9.html', {'round_stats9': round_stats9})
-    
-class Putting(View):
-    def get(self, request):
-        form = PuttForm()
-        #putt_stats = PuttPractice.objects.all()
-        #print(putt_stats)
-        return render(request, 'GBGolf/putt.html', {'form': form})
-    
-    def post(self, request):
-        form = PuttForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('/')
-        return HttpResponse('Complete Form')
-
-class Range(View):
-    def get(self, request):
-        return render(request, 'GBGolf/range.html', {})
 
 class Handicap(View):
     def get(self, request):

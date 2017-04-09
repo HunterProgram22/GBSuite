@@ -118,18 +118,10 @@
                                 <a href="{% url 'GBGolfrounds9' %}">9-Hole Rounds</a>
                             </li>
                         </ul>
+
                     </li>
                     <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#practice">    
-                        <i class="fa fa-fw fa-ambulance"></i> Practice <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="practice" class="collapse">
-                            <li>
-                                <a href="{% url 'GBGolfpracticeputt' %}">Putting Practice</a>
-                            </li>
-                            <li>
-                                <a href="{% url 'GBGolfpracticerange' %}">Range Practice</a>
-                            </li>
-                        </ul>
+                        <a href="{% url 'GBGolfPutt_practice' %}"><i class="fa fa-fw fa-ambulance"></i> Putting Practice</a>
                     </li>
                     <li>
                         <a href="{% url 'GBGolfhandicap' %}"><i class="fa fa-fw fa-line-chart"></i> Handicap</a>
