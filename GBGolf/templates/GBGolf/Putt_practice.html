@@ -47,6 +47,25 @@
 
 </form>
 
+<div id="puttsheet">
+<table width="100%" style="border: 3px solid black;">
+<tr style="border: 1px solid black;">
+    <th>Date</th>
+    <th>Distance</th>
+    <th>Makes</th>
+    <th>Attempts</th>
+</tr>
+{% for putt in putts %}
+<tr>
+        <td>{{ putt.date }}</td>
+        <td>{{ putt.distance }}</td>
+        <td>{{ putt.makes }}</td>
+        <td>{{ putt.attempts}}</td>
+</tr>
+{% endfor %}
+</table>
+</div>
+
 
 </body>
 

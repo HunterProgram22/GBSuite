@@ -62,7 +62,18 @@ class Delete_round(View):
 class Putt_practice(View):
     def get(self, request):
         form = PuttForm()
-        return render(request, 'GBGolf/Putt_practice.html', {'form': form})
+        putts = PuttPractice.objects.all().order_by('-date')
+        return render(request, 'GBGolf/Putt_practice.html', {'form': form,
+                                                             'putts': putts})
+
+    def post(self, request):
+        form = PuttForm(request.POST)
+        if form.is_valid():
+            form.save()
+        putts = PuttPractice.objects.all().order_by('-date')
+        return render(request, 'GBGolf/Putt_practice.html', {'form': form,
+                                                             'putts': putts})
+
 
 class Course_new(View):
     def post(self, request):
