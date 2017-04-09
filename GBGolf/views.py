@@ -67,9 +67,10 @@ class Putt_practice(View):
                                                              'putts': putts})
 
     def post(self, request):
-        form = PuttForm(request.POST)
-        if form.is_valid():
-            form.save()
+        dataform = PuttForm(request.POST)
+        if dataform.is_valid():
+            dataform.save()
+        form = PuttForm()
         putts = PuttPractice.objects.all().order_by('-date')
         return render(request, 'GBGolf/Putt_practice.html', {'form': form,
                                                              'putts': putts})
