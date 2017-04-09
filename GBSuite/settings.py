@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'GBFit',
     'GBGolf',
     'log',
+    'autofixture',
 ]
 
 MIDDLEWARE = [

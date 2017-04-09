@@ -9,3 +9,4 @@ myvenv
 JustinKudela$GBSuite
 db.mysql
 mydatabase
+database_load.py
