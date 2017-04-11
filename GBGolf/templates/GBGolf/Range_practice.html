@@ -24,6 +24,32 @@
 
 </form>
 
+<div id="drillsheet">
+<table width="100%" style="border: 3px solid black;">
+<tr style="border: 1px solid black;">
+    <th>Date</th>
+    <th>Drill</th>
+    <th>Club</th>
+    <th>Balls Hit</th>
+</tr>
+{% for drill in drills %}
+<tr>
+        <td>{{ drill.date }}</td>
+        <td>{{ drill.drill }}</td>
+        <td>{{ drill.club }}</td>
+        <td>{{ drill.balls_hit }}</td>
+</tr>
+{% endfor %}
+</table>
+</div>
+<script>
+    var today = new Date();
+    var stringmonth = 1 + today.getMonth();
+    var stringdate = stringmonth + '/' + today.getDate() + '/' +
+        today.getFullYear();
+    document.getElementById('id_date').value = stringdate;
+</script>
+
 
 </body>
 

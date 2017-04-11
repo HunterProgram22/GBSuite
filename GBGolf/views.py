@@ -80,7 +80,19 @@ class Putt_practice(View):
 class Range_practice(View):
     def get(self, request):
         form = RangeForm()
-        return render(request, 'GBGolf/Range_practice.html', {'form': form})
+        drills = RangeDrill.objects.all().order_by('-date')
+        return render(request, 'GBGolf/Range_practice.html', {'form': form,
+                                                              'drills': drills})
+
+    def post(self, request):
+        dataform = RangeForm(request.POST)
+        if dataform.is_valid():
+            dataform.save()
+        form = RangeForm()
+        drills = RangeDrill.objects.all().order_by('-date')
+        return render(request, 'GBGolf/Range_practice.html', {'form': form,
+                                                              'drills': drills})
+
 
 
 class Course_new(View):
