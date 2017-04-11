@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from .forms import RoundForm, CourseForm, ShotsForm, PuttForm
-from .models import Round, Shots, PuttPractice
+from .forms import RoundForm, CourseForm, ShotsForm, PuttForm, RangeForm
+from .models import Round, Shots, PuttPractice, RangeDrill
 from .functions import calcHandicap, yearAverages
 
 
@@ -59,6 +59,7 @@ class Delete_round(View):
             round.delete()
             return redirect('GBGolfrounds9')
 
+
 class Putt_practice(View):
     def get(self, request):
         form = PuttForm()
@@ -74,6 +75,12 @@ class Putt_practice(View):
         putts = PuttPractice.objects.all().order_by('-date')
         return render(request, 'GBGolf/Putt_practice.html', {'form': form,
                                                              'putts': putts})
+
+
+class Range_practice(View):
+    def get(self, request):
+        form = RangeForm()
+        return render(request, 'GBGolf/Range_practice.html', {'form': form})
 
 
 class Course_new(View):

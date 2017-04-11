@@ -1,0 +1,31 @@
+{% extends 'GBGolf/base.html' %}
+
+{% block content %}
+
+<head>
+    <style>
+        .gb1{
+            margin: 4px 2px 4px 2px;
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+
+<h3>Range Practice</h3>
+
+<form method="POST">{% csrf_token %}
+        <p class="gb1">Date: {{ form.date }}</p>
+        <p class="gb1">Drill: {{ form.drill }}</p>
+        <p class="gb1">Club: {{ form.club }}</p>
+        <p class="gb1">Balls Hit: {{ form.balls_hit }}</p>
+
+    <button class="gb1" type="submit" class="save btn btn-default">Submit</button>
+
+</form>
+
+
+</body>
+
+
+{% endblock %}

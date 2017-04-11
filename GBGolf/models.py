@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Course(models.Model):
     course = models.CharField(max_length=200, unique=True)
     rating = models.DecimalField(max_digits=5, decimal_places=2)
@@ -8,6 +9,7 @@ class Course(models.Model):
 
     def __str__(self):
         return self.course
+
 
 class Round(models.Model):
     course = models.ForeignKey(Course, to_field="course")
@@ -43,6 +45,7 @@ class Round(models.Model):
         self.differential = round(self.differential, 1)
         return self.differential
 
+
 class Shots(models.Model):
     date = models.OneToOneField(Round, to_field="date")
     drdist = models.IntegerField()
@@ -58,8 +61,17 @@ class Shots(models.Model):
     penal = models.IntegerField()
     coursemgmt = models.IntegerField()
 
+
 class PuttPractice(models.Model):
     date = models.DateField()
     distance = models.IntegerField()
     attempts = models.IntegerField()
     makes = models.IntegerField()
+
+
+class RangeDrill(models.Model):
+    date = models.DateField()
+    drill = models.CharField(max_length=40)
+    club = models.CharField(max_length=10)
+    balls_hit = models.IntegerField()
+

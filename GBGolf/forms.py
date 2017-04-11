@@ -1,6 +1,7 @@
 from django import forms
 
-from .models import Round, Course, Shots, PuttPractice
+from .models import Round, Course, Shots, PuttPractice, RangeDrill
+
 
 class RoundForm(forms.ModelForm):
 
@@ -16,6 +17,7 @@ class CourseForm(forms.ModelForm):
         model = Course
         fields = ('course', 'rating', 'slope', 'par')
 
+
 class ShotsForm(forms.ModelForm):
 
     class Meta:
@@ -24,8 +26,16 @@ class ShotsForm(forms.ModelForm):
                   'shtdist', 'shtacc', 'pitch', 'chip', 'putt', 'penal',
                   'coursemgmt')
 
+
 class PuttForm(forms.ModelForm):
 
     class Meta:
         model = PuttPractice
         fields = ('date', 'distance', 'attempts', 'makes')
+
+
+class RangeForm(forms.ModelForm):
+
+    class Meta:
+        model = RangeDrill
+        fields = ('date', 'drill', 'club', 'balls_hit')
