@@ -27,5 +27,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^GBFinance/', include('GBFinance.urls')),
     url(r'^GBGolf/', include('GBGolf.urls')),
+    url(r'^GBFit/', include('GBFit.urls')),
     url(r'^$', views.main, name='GBSuitehome'),
 ]
