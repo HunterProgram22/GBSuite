@@ -71,7 +71,22 @@ class PuttPractice(models.Model):
 
 class RangeDrill(models.Model):
     date = models.DateField()
-    drill = models.CharField(max_length=40)
     club = models.CharField(max_length=10)
     balls_hit = models.IntegerField()
+    WARMUP = "Warmup"
+    COOLDOWN = "Cooldown"
+    THC_STRIKE = "Toe/Heel/Center Strike"
+    TH_SETUP = "Toe/Heel Setup"
+    GATE_STRIKE = "Gate Strike"
+    TH_CONSTRAINT = "Toe or Heel Constraint"
+    STEP_DRILL = "Step Drill"
+    DRILL_CHOICES = ( (WARMUP, 'Warmup'),
+                      (THC_STRIKE, 'Toe/Heel/Center Strike'),
+                      (TH_SETUP, 'Toe/Heel Setup'),
+                      (GATE_STRIKE, 'Gate Strike'),
+                      (TH_CONSTRAINT, 'Toe or Heel Constraint'),
+                      (STEP_DRILL, 'Step Drill'),
+                      (COOLDOWN, 'Cooldown'),
+                      )
+    drill = models.CharField(max_length=40, choices=DRILL_CHOICES, default=THC_STRIKE)
 

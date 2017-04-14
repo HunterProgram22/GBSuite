@@ -8,13 +8,29 @@
             margin: 4px 2px 4px 2px;
             width: 100px;
         }
+
+        #toprow{
+            width: auto;
+        }
+
+        #topleft{
+            width: 50%;
+            float: left;
+        }
+
+        #topright{
+            border: 2px solid black;
+            width: 50%;
+            float: right;
+        }
     </style>
 </head>
 <body>
 
 <h3>Range Practice</h3>
-
-<form method="POST">{% csrf_token %}
+<div id='toprow'>
+    <div id='topleft'>
+    <form method="POST">{% csrf_token %}
         <p class="gb1">Date: {{ form.date }}</p>
         <p class="gb1">Drill: {{ form.drill }}</p>
         <p class="gb1">Club: {{ form.club }}</p>
@@ -22,7 +38,21 @@
 
     <button class="gb1" type="submit" class="save btn btn-default">Submit</button>
 
-</form>
+    </form>
+    </div>
+    <div id='topright'>
+        <h5>Non-ball Drills</h5>
+        <ul>
+            <li>Extreme Misses</li>
+            <li>Alignment Stick Release</li>
+            <li>Club Swoosh (1-hand)</li>
+            <li>Rope Swoosh (2-hand)</li>
+            <li>Sand Splash/Swing Direction</li>
+        </ul>
+    </div>
+
+
+</div>
 
 <div id="drillsheet">
 <table width="100%" style="border: 3px solid black;">
