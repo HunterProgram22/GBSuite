@@ -80,12 +80,20 @@ class RangeDrill(models.Model):
     GATE_STRIKE = "Gate Strike"
     TH_CONSTRAINT = "Toe or Heel Constraint"
     STEP_DRILL = "Step Drill"
+    DIVOT_DRILL = "Grass Divot Drill"
+    SAND_DIVOT = "Sand Divot Drill"
+    BALL_POSITION = "Ball Position Divot"
+    TOWEL_DRILL = "Towel Drill"
     DRILL_CHOICES = ( (WARMUP, 'Warmup'),
                       (THC_STRIKE, 'Toe/Heel/Center Strike'),
                       (TH_SETUP, 'Toe/Heel Setup'),
                       (GATE_STRIKE, 'Gate Strike'),
                       (TH_CONSTRAINT, 'Toe or Heel Constraint'),
                       (STEP_DRILL, 'Step Drill'),
+                      (DIVOT_DRILL, 'Grass Divot Drill'),
+                      (SAND_DIVOT, 'Sand Divot Drill'),
+                      (BALL_POSITION, 'Ball Position Divot'),
+                      (TOWEL_DRILL, 'Towel Drill'),
                       (COOLDOWN, 'Cooldown'),
                       )
     drill = models.CharField(max_length=40, choices=DRILL_CHOICES, default=THC_STRIKE)
