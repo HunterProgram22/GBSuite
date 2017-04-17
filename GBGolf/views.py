@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from .forms import RoundForm, CourseForm, ShotsForm, PuttForm, RangeForm
-from .models import Round, Shots, PuttPractice, RangeDrill
+from .forms import RoundForm, CourseForm, ShotsForm, PuttForm, RangeForm, ChipForm
+from .models import Round, Shots, PuttPractice, RangeDrill, ChipDrill
 from .functions import calcHandicap, yearAverages
 
 
@@ -75,6 +75,23 @@ class Putt_practice(View):
         putts = PuttPractice.objects.all().order_by('-date')
         return render(request, 'GBGolf/Putt_practice.html', {'form': form,
                                                              'putts': putts})
+
+
+class Chip_practice(View):
+    def get(self, request):
+        form = ChipForm()
+        chips = ChipDrill.objects.all().order_by('-date')
+        return render(request, 'GBGolf/Chip_practice.html', {'form': form,
+                                                             'chips': chips})
+
+    def post(self, request):
+        dataform = ChipForm(request.POST)
+        if dataform.is_valid():
+            dataform.save()
+        form = ChipForm()
+        chips = ChipDrill.objects.all().order_by('-date')
+        return render(request, 'GBGolf/Chip_practice.html', {'form': form,
+                                                             'chips': chips})
 
 
 class Range_practice(View):

@@ -98,3 +98,24 @@ class RangeDrill(models.Model):
                       )
     drill = models.CharField(max_length=40, choices=DRILL_CHOICES, default=THC_STRIKE)
 
+
+class ChipDrill(models.Model):
+    date = models.DateField()
+    club = models.CharField(max_length=10)
+    balls_hit = models.IntegerField()
+    balls_ontarget = models.IntegerField()
+    INDOOR = "Home Mat Chip"
+    SHORT_CHIP = "Close Hole Chip"
+    LONG_CHIP = "Far Hole Chip"
+    LOB_CHIP = "Lob Shot"
+    BUMP_RUN = "Bump and Run"
+    SAND_SHOT = "Bunker Shot"
+    DRILL_CHOICES = ( (INDOOR, 'Home Mat Chip'),
+                      (SHORT_CHIP, 'Close Hole Chip'),
+                      (LONG_CHIP, 'Far Hole Chip'),
+                      (LOB_CHIP, 'Lob Shot'),
+                      (BUMP_RUN, 'Bump and Run'),
+                      (SAND_SHOT, 'Bunker Shot'),
+                      )
+    drill = models.CharField(max_length=40, choices=DRILL_CHOICES, default=INDOOR)
+
