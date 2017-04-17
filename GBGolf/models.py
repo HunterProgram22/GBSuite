@@ -68,6 +68,9 @@ class PuttPractice(models.Model):
     attempts = models.IntegerField()
     makes = models.IntegerField()
 
+    def __str__ (self):
+        return str(self.date) + " " + str(self.distance)
+
 
 class RangeDrill(models.Model):
     date = models.DateField()
@@ -98,6 +101,9 @@ class RangeDrill(models.Model):
                       )
     drill = models.CharField(max_length=40, choices=DRILL_CHOICES, default=THC_STRIKE)
 
+    def __str__ (self):
+        return str(self.date) + " " + str(self.club) + " " + str(self.drill)
+
 
 class ChipDrill(models.Model):
     date = models.DateField()
@@ -118,4 +124,7 @@ class ChipDrill(models.Model):
                       (SAND_SHOT, 'Bunker Shot'),
                       )
     drill = models.CharField(max_length=40, choices=DRILL_CHOICES, default=INDOOR)
+
+    def __str__ (self):
+        return str(self.date) + " " + str(self.club) + " " + str(self.drill)
 
