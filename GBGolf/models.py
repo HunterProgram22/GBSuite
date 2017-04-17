@@ -116,12 +116,14 @@ class ChipDrill(models.Model):
     LOB_CHIP = "Lob Shot"
     BUMP_RUN = "Bump and Run"
     SAND_SHOT = "Bunker Shot"
+    COIN_DRILL = "3 Coin Chip"
     DRILL_CHOICES = ( (INDOOR, 'Home Mat Chip'),
                       (SHORT_CHIP, 'Close Hole Chip'),
                       (LONG_CHIP, 'Far Hole Chip'),
                       (LOB_CHIP, 'Lob Shot'),
                       (BUMP_RUN, 'Bump and Run'),
                       (SAND_SHOT, 'Bunker Shot'),
+                      (COIN_DRILL, '3 Coin Chip'),
                       )
     drill = models.CharField(max_length=40, choices=DRILL_CHOICES, default=INDOOR)
 
