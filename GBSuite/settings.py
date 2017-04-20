@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '&4&gy(+!ywq^#fejn@#7xkc-x=dho1-d78f&8104#^3ln8!cj='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['192.168.2.6', '127.0.0.1', 'justinkudela.pythonanywhere.com']
 
@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['192.168.2.6', '127.0.0.1', 'justinkudela.pythonanywhere.com']
 # Application definition
 
 INSTALLED_APPS = [
+    'djangosecure',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -57,6 +58,21 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'GBSuite.urls'
 
 LOGIN_REDIRECT_URL = '/' # It means home view
+
+# Security features from django.secure https://pypi.python.org/pypi/django-secure
+SECURE_SSL_REDIRECT = True
+SECURE_HSTS_SECONDS = 10
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_FRAME_DENY = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_BROWSER_XSS_FILTER = True
+
+# Session cooike settings not part of django.secure
+SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_HTTPONLY = True
+
+
+
 
 TEMPLATES = [
     {

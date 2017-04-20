@@ -87,6 +87,9 @@ class RangeDrill(models.Model):
     SAND_DIVOT = "Sand Divot Drill"
     BALL_POSITION = "Ball Position Divot"
     TOWEL_DRILL = "Towel Drill"
+    THREE_TEE = "3-Tee Drill"
+    COIN_TEE = "Coin Tee Drill"
+    VARIED_TEE = "Variable Height Tee Drill"
     DRILL_CHOICES = ( (WARMUP, 'Warmup'),
                       (THC_STRIKE, 'Toe/Heel/Center Strike'),
                       (TH_SETUP, 'Toe/Heel Setup'),
@@ -97,6 +100,9 @@ class RangeDrill(models.Model):
                       (SAND_DIVOT, 'Sand Divot Drill'),
                       (BALL_POSITION, 'Ball Position Divot'),
                       (TOWEL_DRILL, 'Towel Drill'),
+                      (THREE_TEE, '3-Tee Drill'),
+                      (COIN_TEE, 'Coin Tee Drill'),
+                      (VARIED_TEE, 'Variable Height Tee Drill'),
                       (COOLDOWN, 'Cooldown'),
                       )
     drill = models.CharField(max_length=40, choices=DRILL_CHOICES, default=THC_STRIKE)
@@ -111,15 +117,15 @@ class ChipDrill(models.Model):
     balls_hit = models.IntegerField()
     balls_ontarget = models.IntegerField()
     INDOOR = "Home Mat Chip"
-    SHORT_CHIP = "Close Hole Chip"
-    LONG_CHIP = "Far Hole Chip"
+    HHSHORT_CHIP = "HH Close Hole Chip"
+    HHLONG_CHIP = "HH Far Hole Chip"
     LOB_CHIP = "Lob Shot"
     BUMP_RUN = "Bump and Run"
     SAND_SHOT = "Bunker Shot"
     COIN_DRILL = "3 Coin Chip"
     DRILL_CHOICES = ( (INDOOR, 'Home Mat Chip'),
-                      (SHORT_CHIP, 'Close Hole Chip'),
-                      (LONG_CHIP, 'Far Hole Chip'),
+                      (HHSHORT_CHIP, 'HH Close Hole Chip'),
+                      (HHLONG_CHIP, 'HH Far Hole Chip'),
                       (LOB_CHIP, 'Lob Shot'),
                       (BUMP_RUN, 'Bump and Run'),
                       (SAND_SHOT, 'Bunker Shot'),
