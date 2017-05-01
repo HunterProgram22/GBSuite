@@ -64,6 +64,7 @@ class Analysis(View):
 class Balance(View):
     def get(self, request):
         month_balance = MonthBal.objects.order_by('-date')[:2]
+        month_balance = month_balance[::-1]
         return render(request, 'GBFinance/balancesheet.html', {'month_balance': month_balance})
 
     def post(self, request):
@@ -82,6 +83,7 @@ class Balance(View):
             month_balance = MonthBal.objects.filter(date__year=year).order_by('date')
         else:
             month_balance = MonthBal.objects.order_by('-date')[:2]
+            month_balance = month_balance[::-1]
         return render(request, 'GBFinance/balancesheet.html', {'month_balance': month_balance})
 
 class Balance_new(View):
@@ -100,6 +102,7 @@ class Balance_new(View):
 class Income(View):
     def get(self, request):
         month_income = MonthInc.objects.order_by('-date')[:2]
+        month_income = month_income[::-1]
         return render(request, 'GBFinance/incomestatement.html', {'month_income': month_income})
 
     def post(self, request):
@@ -118,6 +121,7 @@ class Income(View):
             month_income = MonthInc.objects.filter(date__year=year).order_by('date')
         else:
             month_income = MonthInc.objects.order_by('-date')[:2]
+            month_income = month_income[::-1]
         return render(request, 'GBFinance/incomestatement.html', {'month_income': month_income})
 
 class Income_new(View):
@@ -135,6 +139,7 @@ class Income_new(View):
 class Cash(View):
     def get(self, request):
         month_cash = MonthInc.objects.all().order_by('-date')[:2]
+        month_cash = month_cash[::-1]
         return render(request, 'GBFinance/cashflow.html', {'month_cash': month_cash})
 
     def post(self, request):
@@ -153,4 +158,5 @@ class Cash(View):
             month_cash = MonthInc.objects.filter(date__year=year).order_by('date')
         else:
             month_cash = MonthInc.objects.order_by('-date')[:2]
+            month_cash = month_cash[::-1]
         return render(request, 'GBFinance/cashflow.html', {'month_cash': month_cash})

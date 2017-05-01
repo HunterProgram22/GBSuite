@@ -90,6 +90,8 @@ class RangeDrill(models.Model):
     THREE_TEE = "3-Tee Drill"
     COIN_TEE = "Coin Tee Drill"
     VARIED_TEE = "Variable Height Tee Drill"
+    SLICE_HOOK = "Slice and Hook"
+    OPCLOSE_FACE = "Open and Closed Face"
     DRILL_CHOICES = ( (WARMUP, 'Warmup'),
                       (THC_STRIKE, 'Toe/Heel/Center Strike'),
                       (TH_SETUP, 'Toe/Heel Setup'),
@@ -103,6 +105,8 @@ class RangeDrill(models.Model):
                       (THREE_TEE, '3-Tee Drill'),
                       (COIN_TEE, 'Coin Tee Drill'),
                       (VARIED_TEE, 'Variable Height Tee Drill'),
+                      (SLICE_HOOK, 'Slice and Hook'),
+                      (OPCLOSE_FACE, 'Open and Closed Face'),
                       (COOLDOWN, 'Cooldown'),
                       )
     drill = models.CharField(max_length=40, choices=DRILL_CHOICES, default=THC_STRIKE)

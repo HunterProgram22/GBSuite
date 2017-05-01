@@ -192,3 +192,8 @@ class Sop(View):
     def get(self, request):
         sop_stats = Shots.objects.all()
         return render(request, 'GBGolf/sop.html', {'sop_stats': sop_stats})
+
+
+class Golf_data(View):
+    def get(self, request):
+        return render(request, 'GBGolf/golf_data.html',{})

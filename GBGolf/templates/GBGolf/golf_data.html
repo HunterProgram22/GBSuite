@@ -1,0 +1,68 @@
+{% extends 'GBGolf/base.html' %}
+
+{% block content %}
+
+<head>
+<style>
+
+    table {
+        border: 2px solid black;
+        width: 100%;
+    }
+
+    th, td {
+        border: 1px solid black;
+        text-align: center;
+    }
+</style>
+</head>
+
+
+<table>
+    <tr>
+        <th>Distance</th>
+        <th>Tour Pro</th>
+        <th>Scratch Golfer</th>
+        <th>Bogey Golfer</th>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>99% (20/20)</td>
+        <td>99% (20/20)</td>
+        <td>95% (19/20)</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>96% (19/20)</td>
+        <td>93% (19/20)</td>
+        <td>84% (17/20)</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>88% (18/20)</td>
+        <td>80% (16/20)</td>
+        <td>65% (13/20)</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>77% (15/20)</td>
+        <td>66% (13/20)</td>
+        <td>50% (10/20)</td>
+    </tr>
+    <tr>
+        <td>8</td>
+        <td>50% (15/20)</td>
+        <td>41% ( 8/20)</td>
+        <td>27% ( 5/20)</td>
+    </tr>
+    <tr>
+        <td>10</td>
+        <td>40% ( 8/20)</td>
+        <td>33% ( 7/20)</td>
+        <td>20% ( 4/20)</td>
+    </tr>
+</table>
+
+
+
+{% endblock %}

@@ -2,7 +2,7 @@ from django.conf.urls import url
 from django.contrib.auth.decorators import login_required
 from .views import Manage, Round_new, Course_new, Shots_new, Rounds, \
     Rounds9, Delete_round, Handicap, Sop, Home, Putt_practice, Range_practice, \
-    Chip_practice
+    Chip_practice, Golf_data
 
 urlpatterns = [
         url(r'^manage/$', login_required(Manage.as_view()), name='GBGolfmanage'),
@@ -14,6 +14,7 @@ urlpatterns = [
         url(r'^Putt_practice/$', login_required(Putt_practice.as_view()), name='GBGolfPutt_practice'),
         url(r'^Chip_practice/$', login_required(Chip_practice.as_view()), name='GBGolfChip_practice'),
         url(r'^Range_practice/$', login_required(Range_practice.as_view()), name='GBGolfRange_practice'),
+        url(r'^golf_data/$', login_required(Golf_data.as_view()), name='GBGolfdata'),
         url(r'^delete_round/', login_required(Delete_round.as_view()), name='GBGolfdelete_round'),
         url(r'^handicap/$', login_required(Handicap.as_view()), name='GBGolfhandicap'),
         url(r'^sop/$', login_required(Sop.as_view()), name='GBGolfsop'),
