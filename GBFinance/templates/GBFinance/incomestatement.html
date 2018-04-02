@@ -71,6 +71,7 @@ td, th {
 </select>
 <select name="year">
     <option value=''>--Select Year--</option>
+    <option value='2018'>2018</option>
     <option value='2017'>2017</option>
     <option value='2016'>2016</option>
     <option value='2015'>2015</option>
@@ -112,7 +113,7 @@ td, th {
             <tr class="detail"><th>CDM Smith Salary</th></tr>
             <tr><th>Total Gross Job Income</th></tr>
             <tr class="blank_row"><td></td></tr>
-            <tr><th>TOTAL INCOME</th></tr>
+            <tr><th>TOTAL INCOME (minus R/R/R)</th></tr>
             <tr class="blank_row"><td></td></tr>
             <tr class="detail"><th>OPERS Pension</th></tr>
             <tr class="detail"><th>Ohio 457(b)</th></tr>
@@ -120,6 +121,7 @@ td, th {
             <tr><th>Total Pre-tax Savings</th></tr>
             <tr class="blank_row"><td></td></tr>
             <tr class="detail"><th>Vanguard Roth IRA</th></tr>
+            <tr class="detail"><th>Robinhood Account</th></tr>
             <tr class="detail"><th>Schwab Accounts</th></tr>
             <tr class="detail"><th>American Express Savings</th></tr>
             <tr class="detail"><th>Fifth Third Savings</th></tr>
@@ -222,6 +224,7 @@ td, th {
             <tr><td><b><span id="dollar">$</span>{{ field.total_pretax_savings | intcomma }}</b></td></tr>
             <tr class="blank_row"><td></td></tr>
             <tr class="detail"><td>{{ field.roth_retirement | intcomma }}</td></tr>
+            <tr class="detail"><td>{{ field.robinhood_investments | intcomma }}</td></tr>
             <tr class="detail"><td>{{ field.schwab_investments | intcomma }}</td></tr>
             <tr class="detail"><td>{{ field.amex_savings| intcomma }}</td></tr>
             <tr class="detail"><td>{{ field.fifththird_savings | intcomma }}</td></tr>

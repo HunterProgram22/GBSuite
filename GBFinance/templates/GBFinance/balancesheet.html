@@ -73,6 +73,7 @@ td, th {
 </select>
 <select name="year">
     <option value=''>--Select Year--</option>
+    <option value='2018'>2018</option>
     <option value='2017'>2017</option>
     <option value='2016'>2016</option>
     <option value='2015'>2015</option>
@@ -107,6 +108,7 @@ td, th {
             <tr class="detail"><th>American Express Savings</th></tr>
             <tr><th>Total Savings</th></tr>
             <tr class="blank_row"><td></td></tr>
+            <tr class="detail"><th>Robinhood Investment</th></tr>
             <tr class="detail"><th>Deacon Schwab Investment</th></tr>
             <tr class="detail"><th>Buckeye Schwab Investment</th></tr>
             <tr><th>Total Investments</th></tr>
@@ -159,6 +161,7 @@ td, th {
             <tr class="detail"><td><u>{{ field.amex_save | intcomma }}</u></td></tr>
             <tr><td><b><span id="dollar">$</span>{{ field.total_save | intcomma }}</b></td></tr>
             <tr class="blank_row"><td></td></tr>
+            <tr class="detail"><td>{{ field.robinhood_invest | intcomma }}</td></tr>
             <tr class="detail"><td>{{ field.deacon_invest | intcomma }}</td></tr>
             <tr class="detail"><td><u>{{ field.buckeye_invest | intcomma }}</u></td></tr>
             <tr><td><b><span id="dollar">$</span>{{ field.total_invest | intcomma }}</b></td></tr>

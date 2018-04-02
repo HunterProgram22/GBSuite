@@ -8,6 +8,7 @@ class MonthBal(models.Model):
         huntington_save = models.DecimalField(max_digits=8, decimal_places=2)
         capone_save = models.DecimalField(max_digits=8, decimal_places=2)
         amex_save = models.DecimalField(max_digits=8, decimal_places=2)
+        robinhood_invest = models.DecimalField(max_digits=8, decimal_places=2)
         buckeye_invest = models.DecimalField(max_digits=8, decimal_places=2)
         deacon_invest = models.DecimalField(max_digits=8, decimal_places=2)
         four57_retire = models.DecimalField(max_digits=8, decimal_places=2)
@@ -39,7 +40,7 @@ class MonthBal(models.Model):
             return (self.total_check() + self.total_save())
 
         def total_invest(self):
-            return (self.buckeye_invest + self.deacon_invest)
+            return (self.buckeye_invest + self.deacon_invest + self.robinhood_invest)
 
         def total_retire(self):
             return (self.opers_retire + self.four01_retire \
@@ -52,7 +53,7 @@ class MonthBal(models.Model):
             return (self.fifththird_check + self.huntington_check + \
                 self.fifththird_save + self.huntington_save \
                 + self.capone_save + self.amex_save + \
-                self.buckeye_invest + self.deacon_invest + \
+                self.buckeye_invest + self.deacon_invest + self.robinhood_invest + \
                 self.opers_retire + self.four01_retire \
                 + self.four57_retire + self.roth_retire + \
                 self.justin_car+self.kat_car+self.main_home)
@@ -93,6 +94,7 @@ class MonthInc(models.Model):
     four57b_retirement = models.DecimalField(max_digits=8, decimal_places=2)
     four01k_retirement = models.DecimalField(max_digits=8, decimal_places=2)
     roth_retirement = models.DecimalField(max_digits=8, decimal_places=2)
+    robinhood_investments = models.DecimalField(max_digits=8, decimal_places=2)
     schwab_investments = models.DecimalField(max_digits=8, decimal_places=2)
     amex_savings = models.DecimalField(max_digits=8, decimal_places=2)
     fifththird_savings = models.DecimalField(max_digits=8, decimal_places=2)
@@ -152,14 +154,14 @@ class MonthInc(models.Model):
 
     def total_all_income(self):
         return (self.total_investment() + self.total_nontaxable_income() + \
-            self.total_grossjob_income())
+            self.total_grossjob_income()) - self.refund_rebate_repayment
 
     def total_pretax_savings(self):
         return (self.opers_retirement + self.four57b_retirement + \
             self.four01k_retirement)
 
     def total_posttax_savings(self):
-        return (self.roth_retirement + self.schwab_investments + \
+        return (self.roth_retirement + self.schwab_investments + self.robinhood_investments + \
             self.amex_savings + self.fifththird_savings + self.capone_savings + \
             self.five29_college + self.huntington_savings)
 

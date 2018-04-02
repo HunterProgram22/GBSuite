@@ -63,7 +63,8 @@ class Delete_round(View):
 class Putt_practice(View):
     def get(self, request):
         form = PuttForm()
-        putts = PuttPractice.objects.all().order_by('-date')
+        putts = PuttPractice.objects.all().order_by('-date', '-pk')
+        putts = putts[:25]
         return render(request, 'GBGolf/Putt_practice.html', {'form': form,
                                                              'putts': putts})
 
@@ -72,7 +73,8 @@ class Putt_practice(View):
         if dataform.is_valid():
             dataform.save()
         form = PuttForm()
-        putts = PuttPractice.objects.all().order_by('-date')
+        putts = PuttPractice.objects.all().order_by('-date', '-pk')
+        putts = putts[:25]
         return render(request, 'GBGolf/Putt_practice.html', {'form': form,
                                                              'putts': putts})
 
