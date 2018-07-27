@@ -42,6 +42,27 @@ td, th {
 {% endfor %}
 </table>
 
+<h3 align="center">Rolling 18-Hole Averages</h3>
+<table width="100%" style="border: 3px solid black;">
+  <tr style="border: 1px solid black;">
+      <th>Strokes</th>
+      <th>Score</th>
+      <th>Putts</th>
+      <th>Fairways Hit</th>
+      <th>GIR</th>
+  </tr>
+<!--  {% for year in year_stats %}
+  <tr>
+      <td>{{ year.0 }}</td>
+      <td>{{ year.1 }}</td>
+      <td>{{ year.2 | floatformat:1 }}</td>
+      <td>{{ year.3 | floatformat:1 }}</td>
+      <td>{{ year.4 | floatformat:1 }}</td>
+      <td>{{ year.5 | floatformat:1 }}</td>
+  </tr>
+  {% endfor %} -->
+  </table>
+
 <h3 align="center">9-Hole Annual Statistics</h3>
 <table width="100%" style="border: 3px solid black;">
 <tr style="border: 1px solid black;">
