@@ -10,6 +10,7 @@ class Home(View):
         year_stats = []
         years_played = []
         rounds = Round.objects.filter(holesplayed=18).order_by('-date')
+        rolling_averages = rollingAverages(rounds)
         for round in rounds:
             if round.get_year() not in years_played:
                 years_played.append(round.get_year())
@@ -26,6 +27,7 @@ class Home(View):
             year_rounds9 = Round.objects.filter(date__year=year9).filter(holesplayed=9)
             year_stats9.append(yearAverages(year_rounds9))
         return render(request, 'GBGolf/home.html', {'year_stats': year_stats,
+                                                    'rolling_averages': rolling_averages,
                                                     'year_stats9': year_stats9})
 
 
