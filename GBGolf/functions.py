@@ -50,7 +50,7 @@ def yearAverages(rounds):
     return (year, roundsplayed, avgScore, avgPutts, avgFH, avgGIR)
 
 def rollingAverages(rounds):
-    last_5 = rounds[0:4]
+    last_5 = rounds[:5]
     #last_10 = rounds[0:9]
     #last_20 = rounds[0:19]
     avgScore = 0
